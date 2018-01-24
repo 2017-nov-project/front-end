@@ -23,17 +23,12 @@ class Map extends React.Component {
       center: this.state.center,
       zoom: this.state.zoom
     });
-  
     this.map.addListener('zoom_changed', () => {
       this.handleZoom()
     });
-
     this.map.addListener('center_changed', () => {
        this.handleCenter()
     });
-
-    //this.getCoordsFromPostcode(housesData)
-
   }
 
   handleZoom = event => {
@@ -55,7 +50,6 @@ class Map extends React.Component {
       this.setState({center});
   }
 
-
 getCoordsFromPostcode = housesData => {
   const postcodeArray = housesData.map(element => element.postcode).slice(0,10)
   return Promise.all(postcodeArray.map(postcode => {
@@ -70,62 +64,27 @@ getCoordsFromPostcode = housesData => {
     })
   })
 }))
-.then(locations => {
-  
-return locations.map(location => {
 
+
+.then(locations => {
+return locations.map(location => {
     const lat = location.lat()    
     const lng = location.lng()
-  
     return {location: new google.maps.LatLng(lat, lng), weight: 1};
-    
-
   })
 })
 .catch(console.log)
 }
 
-
-
-
-
-
-
-
-loadHeatmap = (event) => {
-  console.log({housesData});
-  
+loadHeatmap = (event) => { 
   this.getCoordsFromPostcode(housesData).then(heatmapData => {
-
-    console.log({heatmapData});
-    
-
+  console.log({heatmapData});
     let heatmap = new google.maps.visualization.HeatmapLayer({
       data: heatmapData
     });
     heatmap.setMap(this.map);
-
   });
-
-//let heatmap;
- 
-
-// heatmap = new google.maps.visualization.HeatmapLayer({
-//   data: heatmapData
-// });
-// heatmap.setMap(this.map);
 }
-
-
-
-
-
-
-
-
-
-
-
 
   render() {
     const mapStyle = {

@@ -230,27 +230,27 @@ const housesData =  [
         "transaction_category": "A",
         "linked_data_uri": "http://landregistry.data.gov.uk/data/ppi/transaction/363CE64F-92F1-4196-840B-009FB4FF76E5/current"
     },
-    {
-        "_id": {
-            "$oid": "5a65d469381393a822b74a01"
-        },
-        "gov_unique_id": "30E62357-08E8-4914-83C7-01E03453DBB9",
-        "price_paid": 36000,
-        "deed_date": "1995-09-11",
-        "postcode": "B31 5RA",
-        "property_type": "T",
-        "new_build": "N",
-        "estate_type": "F",
-        "saon": "",
-        "paon": 30,
-        "street": "PORLOCK CRESCENT",
-        "locality": "NORTHFIELD",
-        "town": "BIRMINGHAM",
-        "district": "BIRMINGHAM",
-        "county": "WEST MIDLANDS",
-        "transaction_category": "A",
-        "linked_data_uri": "http://landregistry.data.gov.uk/data/ppi/transaction/30E62357-08E8-4914-83C7-01E03453DBB9/current"
-    },
+    // {
+    //     "_id": {
+    //         "$oid": "5a65d469381393a822b74a01"
+    //     },
+    //     "gov_unique_id": "30E62357-08E8-4914-83C7-01E03453DBB9",
+    //     "price_paid": 36000,
+    //     "deed_date": "1995-09-11",
+    //     "postcode": "B31 5RA",
+    //     "property_type": "T",
+    //     "new_build": "N",
+    //     "estate_type": "F",
+    //     "saon": "",
+    //     "paon": 30,
+    //     "street": "PORLOCK CRESCENT",
+    //     "locality": "NORTHFIELD",
+    //     "town": "BIRMINGHAM",
+    //     "district": "BIRMINGHAM",
+    //     "county": "WEST MIDLANDS",
+    //     "transaction_category": "A",
+    //     "linked_data_uri": "http://landregistry.data.gov.uk/data/ppi/transaction/30E62357-08E8-4914-83C7-01E03453DBB9/current"
+    // },
     {
         "_id": {
             "$oid": "5a65d469381393a822b74a02"
