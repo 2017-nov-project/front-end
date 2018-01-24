@@ -31,9 +31,9 @@ class Map extends React.Component {
     this.map.addListener('center_changed', () => {
        this.handleCenter()
     });
-  
+
     this.getCoordsFromPostcode(housesData)
-  
+
   }
 
   handleZoom = event => {
@@ -55,6 +55,7 @@ class Map extends React.Component {
       this.setState({center});
   }
 
+
 getCoordsFromPostcode = housesData => {
   const postcodeArray = housesData.map(element => element.postcode).slice(0,10)
   Promise.all(postcodeArray.map(postcode => {
@@ -69,9 +70,14 @@ getCoordsFromPostcode = housesData => {
     })
   })
 }))
-.then(console.log)
+.then(res => {
+  console.log(res)
+})
 .catch(console.log)
 }
+
+
+
 
 
 
