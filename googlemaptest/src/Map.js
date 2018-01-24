@@ -9,6 +9,7 @@ const google = window.google;
 class Map extends React.Component {
 
   state = {
+    coordinates: [],
     center: {
       lat:  53.486051,
       lng: -2.239902
@@ -47,22 +48,22 @@ class Map extends React.Component {
 
 
   getCoordsFromPostcode = (housesData) => {
-    let postcodeArray = []
-    housesData.map(function(element) {
-      postcodeArray.push(element.postcode)
-      return postcodeArray.slice(0, 12);
-    })
-    let coords = []
-    postcodeArray.map(function(postcode) {
-      var geocoder = new google.maps.Geocoder();
-      geocoder.geocode({address: postcode}, function(results, status) {
+    const postcodeArray = housesData.map(element => element.postcode).slice(0,12)
+
+    const coords = postcodeArray.map(postcode => {
+      let geocoder = new google.maps.Geocoder();
+      geocoder.geocode({address: postcode}, (results, status) => {
         if (status === google.maps.GeocoderStatus.OK) {
-          coords.push(results[0].geometry.location)
-        }
+
+          console.log(results[0].geometry.location);
+          
+          return results[0].geometry.location
+       }
       })
     })
-    this.setState({coords})
     console.log(coords)
+    this.setState({coordinates: coords})
+    
       let heatmapData = []
       return coords.map(function(location) {
         return heatmapData.push('{location: new google.maps.' + location + ', weight: 1}')
