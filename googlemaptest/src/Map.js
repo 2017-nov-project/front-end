@@ -45,7 +45,8 @@ class Map extends React.Component {
   }
 
 
-getCoordsFromPostcode = (housesData) => {
+
+  getCoordsFromPostcode = (housesData) => {
     let postcodeArray = []
     housesData.map(function(element) {
       postcodeArray.push(element.postcode)
@@ -68,6 +69,7 @@ getCoordsFromPostcode = (housesData) => {
         console.log(heatmapData)
     })
   }
+
 
 
 
