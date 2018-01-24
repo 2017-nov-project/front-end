@@ -1,7 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import housesData from './data/housesData.js'
 
 const google = window.google;
+
 
 
 class Map extends React.Component {
@@ -12,10 +14,12 @@ class Map extends React.Component {
       lng: -2.239902
     },
     zoom: 16,
-    isHeatmap: false
+    isHeatmap: false,
+    coords: []
   }
 
   componentDidMount() {
+    this.getCoordsFromPostcode(housesData)
     this.map = new google.maps.Map(this.refs.map, {
       center: this.state.center,
       zoom: this.state.zoom
@@ -37,7 +41,39 @@ class Map extends React.Component {
     center.lng = newMap.lng()
       this.setState({center});
     });
+    
   }
+
+
+getCoordsFromPostcode = (housesData) => {
+    let postcodeArray = []
+    housesData.map(function(element) {
+      postcodeArray.push(element.postcode)
+      return postcodeArray.slice(0, 12);
+    })
+    let coords = []
+    postcodeArray.map(function(postcode) {
+      var geocoder = new google.maps.Geocoder();
+      geocoder.geocode({address: postcode}, function(results, status) {
+        if (status === google.maps.GeocoderStatus.OK) {
+          coords.push(results[0].geometry.location)
+        }
+      })
+    })
+    this.setState({coords})
+    console.log(coords)
+      let heatmapData = []
+      return coords.map(function(location) {
+        return heatmapData.push('{location: new google.maps.' + location + ', weight: 1}')
+        console.log(heatmapData)
+    })
+  }
+
+
+
+
+
+
 
 
 
