@@ -54,43 +54,26 @@ class Map extends React.Component {
     center.lng = newMap.lng()
       this.setState({center});
   }
-  
 
- 
-//not working
-
- 
-  getCoordsFromPostcode = (housesData) => {
-    const postcodeArray = housesData.map(element => element.postcode).slice(0,10)
-    
-    postcodeArray.map(postcode => {
-      let coordsArray = []
-       postcodeArray.forEach(function(postcode) {
-        var geocoder = new google.maps.Geocoder();
-
-        return new Promise((resolve, reject) => {
-        geocoder.geocode({'address': postcode}, (results, status) => {
-          if (status === google.maps.GeocoderStatus.OK) {
-            resolve(results[0].geometry.location)
-            // console.log(results[0].geometry.location)
-          } else {
-            reject(new Error('error'));
-          }
-        })
-      })
-      .then (res => {
-        coordsArray.push(res)
-        // console.log(coordsArray)
-      })
-      .then (res => {
-        this.setState({coords: coordsArray})
-        console.log(this.state.coords)
-      })
+getCoordsFromPostcode = housesData => {
+  const postcodeArray = housesData.map(element => element.postcode).slice(0,10)
+  Promise.all(postcodeArray.map(postcode => {
+    return new Promise((resolve, reject) => {
+    const geocoder = new google.maps.Geocoder();
+      geocoder.geocode({'address': postcode}, (results, status) => {
+        if (status === google.maps.GeocoderStatus.OK) {
+          resolve(results[0].geometry.location)
+        } else {
+          reject(new Error('error'));
+        }
     })
   })
+}))
+.then(console.log)
+.catch(console.log)
 }
 
-//not working
+
 
 
 
