@@ -9,7 +9,6 @@ const google = window.google;
 class Map extends React.Component {
 
   state = {
-    coordinates: [],
     center: {
       lat:  53.486051,
       lng: -2.239902
@@ -20,17 +19,30 @@ class Map extends React.Component {
   }
 
   componentDidMount() {
-    this.getCoordsFromPostcode(housesData)
     this.map = new google.maps.Map(this.refs.map, {
       center: this.state.center,
       zoom: this.state.zoom
     });
+  
     this.map.addListener('zoom_changed', () => {
+      this.handleZoom()
+    });
+
+    this.map.addListener('center_changed', () => {
+       this.handleCenter()
+    });
+  
+    this.getCoordsFromPostcode(housesData)
+  
+  }
+
+  handleZoom = event => {
       this.setState({
         zoom: this.map.getZoom(),
       });
-    });
-    this.map.addListener('center_changed', () => {
+    }
+
+  handleCenter = event => {
     let newMap = this.map.getCenter()
     let newLat = newMap.lat()
     let newLng = newMap.lng()
@@ -41,42 +53,44 @@ class Map extends React.Component {
     center.lat = newMap.lat()
     center.lng = newMap.lng()
       this.setState({center});
-    });
-    
   }
+  
 
+ 
+//not working
 
-
+ 
   getCoordsFromPostcode = (housesData) => {
-    const postcodeArray = housesData.map(element => element.postcode).slice(0,12)
+    const postcodeArray = housesData.map(element => element.postcode).slice(0,10)
+    
+    postcodeArray.map(postcode => {
+      let coordsArray = []
+       postcodeArray.forEach(function(postcode) {
+        var geocoder = new google.maps.Geocoder();
 
-    const coords = postcodeArray.map(postcode => {
-      let geocoder = new google.maps.Geocoder();
-      geocoder.geocode({address: postcode}, (results, status) => {
-        if (status === google.maps.GeocoderStatus.OK) {
-
-          console.log(results[0].geometry.location);
-          
-          return results[0].geometry.location
-       }
+        return new Promise((resolve, reject) => {
+        geocoder.geocode({'address': postcode}, (results, status) => {
+          if (status === google.maps.GeocoderStatus.OK) {
+            resolve(results[0].geometry.location)
+            // console.log(results[0].geometry.location)
+          } else {
+            reject(new Error('error'));
+          }
+        })
+      })
+      .then (res => {
+        coordsArray.push(res)
+        // console.log(coordsArray)
+      })
+      .then (res => {
+        this.setState({coords: coordsArray})
+        console.log(this.state.coords)
       })
     })
-    console.log(coords)
-    this.setState({coordinates: coords})
-    
-      let heatmapData = []
-      return coords.map(function(location) {
-        return heatmapData.push('{location: new google.maps.' + location + ', weight: 1}')
-        console.log(heatmapData)
-    })
-  }
+  })
+}
 
-
-
-
-
-
-
+//not working
 
 
 
