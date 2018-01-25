@@ -60,11 +60,18 @@
 }
 
 /* ## upper input rows ## */
+.errHandle {
+  padding: 0;
+  margin: 0;
+  font-size:0.9em;
+  color: darkslategray;
+}
 
 .inputrow {
-  display: flex;
+  display: flex;        
+  flex-direction: column;  
   justify-content: center;
-  flex-flow: row wrap;
+  align-items: center; 
 }
 .inputrow2 {
   display: flex;
@@ -226,7 +233,6 @@ select {
 .postcodeInput {
   height: 3em;
   width: 45%;
-
 }
 
 }
