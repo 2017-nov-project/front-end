@@ -94,7 +94,6 @@ loadHeatmap = (event) => {
     
     return (
       <div>
-
       <div className='buttonRow'>
       <i title='heatmap' className="fa fa-map" onClick={this.loadHeatmap}></i>
       <i title='property type' className="fa fa-home" onClick={this.loadCrimeChart}></i>
