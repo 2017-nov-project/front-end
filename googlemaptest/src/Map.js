@@ -6,6 +6,7 @@ const google = window.google;
 
 
 
+
 class Map extends React.Component {
 
   state = {
@@ -64,8 +65,6 @@ getCoordsFromPostcode = housesData => {
     })
   })
 }))
-
-
 .then(locations => {
 return locations.map(location => {
     const lat = location.lat()    
@@ -88,14 +87,14 @@ loadHeatmap = (event) => {
 
   render() {
     const mapStyle = {
-      width: 700,
-      height: 500,
+      width: 750,
+      height: 550,
       border: '1px solid black'
     };
     
     return (
       <div>
-      <div>
+
       <div className='buttonRow'>
       <i title='heatmap' className="fa fa-map" onClick={this.loadHeatmap}></i>
       <i title='property type' className="fa fa-home" onClick={this.loadCrimeChart}></i>
@@ -103,8 +102,10 @@ loadHeatmap = (event) => {
       <i title='broadband speed' className="fa fa-wifi"></i>
       <i title='natural disaster risk' className="fa fa-bolt"></i>
       </div>
-        <div ref="map" style={mapStyle}></div>
-      </div>
+
+      <div className='actualMap' ref="map" style={mapStyle}></div>
+
+      
       <div>
        <p>props and state provided by google maps event handlers</p>
        <p>current long:  {this.state.center.lat}</p>
@@ -112,7 +113,7 @@ loadHeatmap = (event) => {
        <p>current zoom: {this.state.zoom}</p>
       </div>
       </div>
-    );
+    )
   }
 }
 
