@@ -3,10 +3,30 @@ import Map from './Map.js'
 import './App.css';
 import ChartPropertyType from './Chart-PropertyType.js'
 import ChartNewOld from './Chart-NewOld.js'
-import MediaQuery from 'react-responsive';
+
 
 
 class App extends Component {
+  state = {
+    averagePrice: 0,
+    userInputPostcode: null,
+    showChart: false
+  }
+
+  handleSubmit = event => {
+    this.setState({userInputPostcode: event.target.value.toUpperCase()})
+  }
+
+  getAveragePriceByPostcode = (event) => {
+    event.preventDefault()
+    let postcode = this.state.userInputPostcode
+    return fetch(`https://peaceful-waters-20110.herokuapp.com/api/postcode/${postcode}/average_price`)
+    .then(res => res.json())
+    .then(res =>
+     this.setState({averagePrice: res[0].average}))
+  }
+
+
   render() {
     return (
       <div className="App">
@@ -21,7 +41,7 @@ class App extends Component {
 
 
         <div className='inputrow'>
-          <input className='postcodeInput' placeholder='enter postcode' type="text" maxlength = "8"></input>
+          <form onSubmit={this.getAveragePriceByPostcode}><input className='postcodeInput' placeholder='enter postcode' type="text" maxlength = "8" onChange={this.handleSubmit} ></input></form>
         </div>
         <div className='inputrow2'>
           <select name="radius"><option>radius</option>
@@ -42,11 +62,12 @@ class App extends Component {
 
         <div class='sidebarHoriz'>
          <div class='horizRow1'>
+    
            <h4 className='avSoldPriceTitle'>average sold price</h4>
            <h4 className='valueChangeTitle'>value change in last...</h4>
          </div>
          <div class='horizRow2'>
-           <h5 className='avSoldPriceAmount'>£185,350</h5>
+           <h5 className='avSoldPriceAmount'>£{this.state.averagePrice}</h5>
            <h5 className='plusAmount'>+ 4.8%</h5>
          </div>
          <div className='row3wrap'>
@@ -70,7 +91,7 @@ class App extends Component {
 
             <div className='sidebarDefault'>
               <h4 className='avSoldPriceTitle'>average sold price</h4>
-              <h5 className='avSoldPriceAmount'>£185,350</h5>
+              <h5 className='avSoldPriceAmount'>£{this.state.averagePrice}</h5>
               <h4 className='valueChangeTitle'>value change in last...</h4>
               <h5 className='plusAmount'>+ 4.8%</h5>
               <label className="switch">

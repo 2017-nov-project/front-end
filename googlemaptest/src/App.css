@@ -133,12 +133,10 @@ select {
 .sidebarDefault {
   border: 1px solid rgb(166, 166, 185);
   height: 600px;
-  width: 26%;
+  width: 20%;
   margin-top: 62px;
   margin-left: 20px;
   padding: 0.5em 0em 0em 1.5em;
-  /* max-width: 240px;
-  min-width: 200px; */
 }
 
 /* mobile sidebar */
@@ -182,6 +180,69 @@ select {
   color: darkslategray;
   font-size: 2em;
   margin: 0.5em 0em 0.5em 0em;
+}
+
+@media only screen and (max-width: 655px) {
+  body {
+    font-size: 0.75em;
+  }
+  .buttonRow {
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+    width: 100%;
+    margin-bottom: 0.5em;
+  }
+
+  .fa {
+    font-size: 1.3em;
+    color: darkslategray;
+    margin-top: 0.5em;
+    padding: 0.5em;
+    border: 1px solid lightslategray;
+    border-radius: 8px;
+    width: 1.3em;
+    text-align: center;
+    cursor: pointer;
+  }
+
+  .sidebarHoriz {
+  font-size: 1em;
+  }
+  .avSoldPriceAmount, .plusAmount {
+  font-size: 1.5em;
+  }
+  
+  .inputrow {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  flex-flow: row;
+ } 
+ select {
+  width: 30%;
+  height: 4em;
+}
+.postcodeInput {
+  height: 3em;
+  width: 45%;
+
+}
+
+}
+
+@media only screen and (max-width: 480px) {
+  
+  select {
+    width: 60%;
+    height: 4em;
+  }
+  .sidebarHoriz {
+    font-size: 0.9em;
+    }
+    .avSoldPriceAmount, .plusAmount {
+    font-size: 1.4em;
+    }
 }
 
 

@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import housesData from './data/housesData.js'
+import postcodesData from './data/postcodesData.js'
+// import housesData from './data/housesData.js'
+import _ from 'lodash';
 
 const google = window.google;
 
@@ -51,39 +53,27 @@ class Map extends React.Component {
       this.setState({center});
   }
 
-getCoordsFromPostcode = housesData => {
-  const postcodeArray = housesData.map(element => element.postcode).slice(0,10)
-  return Promise.all(postcodeArray.map(postcode => {
-    return new Promise((resolve, reject) => {
-    const geocoder = new google.maps.Geocoder();
-      geocoder.geocode({'address': postcode}, (results, status) => {
-        if (status === google.maps.GeocoderStatus.OK) {
-          resolve(results[0].geometry.location)
-        } else {
-          reject(new Error('error'));
-        }
-    })
-  })
-}))
-.then(locations => {
-return locations.map(location => {
-    const lat = location.lat()    
-    const lng = location.lng()
-    return {location: new google.maps.LatLng(lat, lng), weight: 1};
-  })
-})
-.catch(console.log)
-}
 
-loadHeatmap = (event) => { 
-  this.getCoordsFromPostcode(housesData).then(heatmapData => {
-  console.log({heatmapData});
-    let heatmap = new google.maps.visualization.HeatmapLayer({
-      data: heatmapData
-    });
-    heatmap.setMap(this.map);
-  });
-}
+   getCoordsFromPostcode = postcodesData => {
+    const locations = postcodesData.map(element => {
+      const {postcode, latitude, longitude} = element.result;
+      return {postcode, latitude, longitude};
+    })
+    return locations.map(location => {
+      const lat = location.latitude    
+      const lng = location.longitude
+      return {location: new google.maps.LatLng(lat, lng), weight: 1};
+    })
+  }
+  
+  loadHeatmap = (event) => { 
+    let heatmapData = this.getCoordsFromPostcode(postcodesData)
+      let heatmap = new google.maps.visualization.HeatmapLayer({
+        data: heatmapData
+      });
+      heatmap.setMap(this.map);
+    };
+  
 
   render() {
     const mapStyle = {
