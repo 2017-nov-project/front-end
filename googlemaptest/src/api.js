@@ -6,6 +6,7 @@ return fetch (`http://localhost:4000/api/coordinates`)
 .then(res => res.json())
 .then(res => {
   return res.coordinatesArr.map(location => {
+    if (!location) return;
       const lat = location.latitude    
       const lng = location.longitude
    return {location: new google.maps.LatLng(lat, lng), weight: 1};
@@ -14,7 +15,7 @@ return fetch (`http://localhost:4000/api/coordinates`)
 }
 
   export const fetchCoordinatesByPostcode = (userInput) => {
-    let userPostcode = userInput.userInput 
+    let userPostcode = userInput.userInput
     return fetch (`http://localhost:4000/api/postcode/${userPostcode}/coordinates`)
     .then(res => res.json())
   }

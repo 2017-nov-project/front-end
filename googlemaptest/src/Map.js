@@ -43,7 +43,6 @@ class Map extends React.Component {
     })
   }
   
-
   handleZoom = event => {
       this.setState({
         zoom: this.map.getZoom(),
