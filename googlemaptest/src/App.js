@@ -46,7 +46,7 @@ class App extends Component {
 
 
         <div className='inputrow'>
-          <form onSubmit={this.handleAveragePriceRequest}><input className='postcodeInput' placeholder='enter postcode or town' type="text" onChange={this.handleSubmit} ></input></form>
+        <form onSubmit={this.handleAveragePriceRequest}><input required title="3 characters minimum" className='postcodeInput' placeholder='enter postcode or town' type="text" onChange={this.handleTyping} ></input></form>
           <p className='errHandle'>{this.state.errorMsg}</p>
         </div>
         <div className='inputrow2'>
