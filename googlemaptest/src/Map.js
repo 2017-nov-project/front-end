@@ -68,7 +68,6 @@ class Map extends React.Component {
   )
 }
 
-  
 loadBikeMap = (event) => { 
     let bikemap = new google.maps.BicyclingLayer();
     bikemap.setMap(this.map);
@@ -78,6 +77,12 @@ loadPublicTransportMap = (event) => {
   let transitLayer = new google.maps.TransitLayer();
   transitLayer.setMap(this.map);
 }
+
+loadDensityMap = (event) => {
+  let trafficLayer = new google.maps.TrafficLayer();
+  trafficLayer.setMap(this.map);
+}
+
 
   render() {
     const mapStyle = {
@@ -92,6 +97,8 @@ loadPublicTransportMap = (event) => {
       <i title='heatmap' className="fa fa-map" onClick={this.loadHeatmap}></i>
       <i title='cycle routes' className="fa fa-bicycle" onClick={this.loadBikeMap}></i>
       <i title='public transport' className="fa fa-subway" onClick={this.loadPublicTransportMap}></i>
+      <i title='traffic density' className="fa fa-car" onClick={this.loadDensityMap}></i>
+      <i title='natural disaster risk' className="fa fa-bolt"></i>
       </div>
       <div className='actualMap' ref="map" style={mapStyle}></div>
       <div>

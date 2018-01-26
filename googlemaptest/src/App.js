@@ -15,25 +15,20 @@ class App extends Component {
     isHovered: false
   }
 
-  handleHover = event => {
-    console.log('called')
-    this.setState({
-        isHovered: !this.state.isHovered
-    })
-  }
-
-  handleTyping = event => {
-    this.setState({
-      userInput: event.target.value.toUpperCase(),
-      errorMsg: ''
-    })
-   }
+  // handleHover = event => {
+  //   this.setState({
+  //       isHovered: !this.state.isHovered
+  //   })
+  // }
 
   handleAveragePriceRequest = (event) => {
     event.preventDefault()
-    getAveragePriceByInput(this.state.userInput)
+    getAveragePriceByInput(this.input.value.toUpperCase())
     .then(res =>
-    this.setState({averagePrice: res[0].average}))
+    this.setState({
+      averagePrice: res[0].average,
+      userInput: this.input.value.toUpperCase(),
+      errorMsg: ''}))
     .catch(err =>
     this.setState({errorMsg: 'information not found'}))
   }
@@ -61,7 +56,7 @@ class App extends Component {
 
 
         <div className='inputrow'>
-        <form onSubmit={this.handleAveragePriceRequest}><input required title="3 characters minimum" className='postcodeInput' placeholder='enter postcode or town' type="text" onChange={this.handleTyping} ></input></form>
+        <form onSubmit={this.handleAveragePriceRequest}><input ref={(input) => this.input = input} required title="3 characters minimum" className='postcodeInput' placeholder='enter postcode or town' type="text"></input></form>
           <p className='errHandle'>{this.state.errorMsg}</p>
         </div>
         <div className='inputrow2'>
@@ -76,7 +71,7 @@ class App extends Component {
           <i title='property type' className="fa fa-home" onClick={this.handleChartRender}></i>
       <i title='crime data'  className='fa fa-balance-scale'></i>
       <i title='broadband speed' className="fa fa-wifi"></i>
-      <i title='natural disaster risk' className="fa fa-bolt"></i>
+      
       </div>
 
 {/* how to do multiple classnames  {`fa fa-balance-scale ${buttonPulse}`} onMouseEnter={this.handleHover} onMouseLeave={this.handleHover} */}
