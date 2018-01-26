@@ -3,54 +3,41 @@ import Map from './Map.js'
 import './App.css';
 import ChartPropertyType from './Chart-PropertyType.js'
 import ChartNewOld from './Chart-NewOld.js'
-
+import {getAveragePriceByInput} from './api'
 
 
 class App extends Component {
   state = {
     averagePrice: 0,
-    userInputPostcode: null,
+    userInput: null,
     showChart: false,
     errorMsg: ''
   }
 
   handleSubmit = event => {
     this.setState({
-      userInputPostcode: event.target.value.toUpperCase(),
+      userInput: event.target.value.toUpperCase(),
       errorMsg: ''
     })
-  }
+   }
 
-
-
-  getAveragePriceByPostcode = (event) => {
+  handleAveragePriceRequest = (event) => {
     event.preventDefault()
-    let postcode = this.state.userInputPostcode
-    if (postcode.match(/.\d/)) {
-    return fetch(`https://peaceful-waters-20110.herokuapp.com/api/postcode/${postcode}/average_price`)
-    .then(res => res.json())
+    getAveragePriceByInput(this.state.userInput)
     .then(res =>
-      this.setState({averagePrice: res[0].average}))
-    } else {
-    return fetch(`https://peaceful-waters-20110.herokuapp.com/api/town/${postcode}/average_price`)
-    
-    .then(res => res.json())
-    .then(res =>
-      this.setState({averagePrice: res[0].average})
-    )
+    this.setState({averagePrice: res[0].average}))
     .catch(err =>
-      this.setState({errorMsg: 'information not found'}))
-    }
+    this.setState({errorMsg: 'information not found'}))
   }
- 
-
-
+  
   render() {
     return (
       <div className="App">
+      <header>
+      <i className="fa fa-home" id='logoHouse'></i>
         <h1 className="app-title">homeTown</h1>
         <h4 className="app-subtitle">find average sold prices, crime data, broadband speed and more in your area</h4>
-    
+      </header>
       <div className='wrapper'>
           {/* <div className='ChartArea'>
           <ChartPropertyType />
@@ -59,17 +46,17 @@ class App extends Component {
 
 
         <div className='inputrow'>
-          <form onSubmit={this.getAveragePriceByPostcode}><input className='postcodeInput' placeholder='enter postcode' type="text" onChange={this.handleSubmit} ></input></form>
+          <form onSubmit={this.handleAveragePriceRequest}><input className='postcodeInput' placeholder='enter postcode or town' type="text" onChange={this.handleSubmit} ></input></form>
           <p className='errHandle'>{this.state.errorMsg}</p>
         </div>
         <div className='inputrow2'>
-          <select name="radius"><option>radius</option>
-            <option>1 mile</option>
-            <option>3 miles</option>
-            <option>5 miles</option>
-            <option>10 miles</option>
+          <select name=""><option>search by...</option>
+          <option>postcode</option>
+            <option>town</option>
+            <option>county</option>
+            <option>locality</option>
           </select>
-          <select name="radius"><option>property type</option>
+          <select name=""><option>property type</option>
             <option>flat</option>
             <option>terrace</option>
             <option>semi-detached</option>
@@ -79,22 +66,22 @@ class App extends Component {
 
  {/* mobile sidebar - horizontal */}
 
-        <div class='sidebarHoriz'>
-         <div class='horizRow1'>
+        <div className='sidebarHoriz'>
+         <div className='horizRow1'>
     
            <h4 className='avSoldPriceTitle'>average sold price</h4>
            <h4 className='valueChangeTitle'>value change in last...</h4>
          </div>
-         <div class='horizRow2'>
+         <div className='horizRow2'>
            <h5 className='avSoldPriceAmount'>£{this.state.averagePrice}</h5>
            <h5 className='plusAmount'>+ 4.8%</h5>
          </div>
          <div className='row3wrap'>
-           <div class='horizRow3'>
+           <div className='horizRow3'>
              <div id='12m'>12m</div>
-             <label class="switch">
+             <label className="switch">
                <input type="checkbox"/>
-               <span class="slider round"></span>
+               <span className="slider round"></span>
              </label>
              <div id='5y'>5yr</div>
              </div>
@@ -105,7 +92,7 @@ class App extends Component {
 
       <div className='mapAndSidebar'>
         <div className='mapArea'>
-            <Map />
+            <Map userInput={this.state.userInput}/>
         </div>
 
             <div className='sidebarDefault'>

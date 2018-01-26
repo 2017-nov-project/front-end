@@ -1,13 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import postcodesData from './data/postcodesData.js'
-// import housesData from './data/housesData.js'
-import _ from 'lodash';
+import {fetchAllCoordinates, fetchCoordinatesByPostcode} from './api';
 
 const google = window.google;
-
-
-
 
 class Map extends React.Component {
 
@@ -34,6 +29,21 @@ class Map extends React.Component {
     });
   }
 
+  componentWillReceiveProps(userInput) {
+    fetchCoordinatesByPostcode(userInput)
+    .then (res => {
+    let center = {...this.state.center}
+    center.lat = res.coordinates.latitude
+    center.lng = res.coordinates.longitude
+    this.setState({center})
+    })
+    this.map = new google.maps.Map(this.refs.map, {
+      center: this.state.center,
+      zoom: this.state.zoom
+    })
+  }
+  
+
   handleZoom = event => {
       this.setState({
         zoom: this.map.getZoom(),
@@ -42,38 +52,22 @@ class Map extends React.Component {
 
   handleCenter = event => {
     let newMap = this.map.getCenter()
-    let newLat = newMap.lat()
-    let newLng = newMap.lng()
-    console.log(newMap)
-    console.log(newLat)
-    console.log(newLng)
     let center = {...this.state.center}
     center.lat = newMap.lat()
     center.lng = newMap.lng()
-      this.setState({center});
-  }
-
-
-   getCoordsFromPostcode = postcodesData => {
-    const locations = postcodesData.map(element => {
-      const {postcode, latitude, longitude} = element.result;
-      return {postcode, latitude, longitude};
-    })
-    return locations.map(location => {
-      const lat = location.latitude    
-      const lng = location.longitude
-      return {location: new google.maps.LatLng(lat, lng), weight: 1};
-    })
-  }
+    this.setState({center})
+}
   
   loadHeatmap = (event) => { 
-    let heatmapData = this.getCoordsFromPostcode(postcodesData)
+    fetchAllCoordinates()
+    .then(heatmapData => {
       let heatmap = new google.maps.visualization.HeatmapLayer({
         data: heatmapData
-      });
+      })
       heatmap.setMap(this.map);
-    };
-  
+    }
+  )
+}
 
   render() {
     const mapStyle = {
@@ -91,10 +85,7 @@ class Map extends React.Component {
       <i title='broadband speed' className="fa fa-wifi"></i>
       <i title='natural disaster risk' className="fa fa-bolt"></i>
       </div>
-
       <div className='actualMap' ref="map" style={mapStyle}></div>
-
-      
       <div>
        <p>props and state provided by google maps event handlers</p>
        <p>current long:  {this.state.center.lat}</p>
