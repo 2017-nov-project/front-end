@@ -15,17 +15,11 @@ return fetch (`http://localhost:4000/api/coordinates`)
 }
 
   export const fetchCoordinatesByPostcode = (userInput) => {
+    if(!userInput) return;
     let userPostcode = userInput.userInput
     return fetch (`http://localhost:4000/api/postcode/${userPostcode}/coordinates`)
     .then(res => res.json())
-  }
-
-  export const fetchCenter = event => {
-      let newMap = this.map.getCenter()
-      let center = {...this.state.center}
-      center.lat = newMap.lat()
-      center.lng = newMap.lng()
-      return ({center})
+    .catch(res => console.log('err'))
   }
 
   export const getAveragePriceByInput = input => {

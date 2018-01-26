@@ -14,7 +14,7 @@ class App extends Component {
     errorMsg: ''
   }
 
-  handleSubmit = event => {
+  handleTyping = event => {
     this.setState({
       userInput: event.target.value.toUpperCase(),
       errorMsg: ''
