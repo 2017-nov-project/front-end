@@ -11,7 +11,15 @@ class App extends Component {
     averagePrice: 0,
     userInput: null,
     showChart: false,
-    errorMsg: ''
+    errorMsg: '',
+    isHovered: false
+  }
+
+  handleHover = event => {
+    console.log('called')
+    this.setState({
+        isHovered: !this.state.isHovered
+    })
   }
 
   handleTyping = event => {
@@ -37,6 +45,7 @@ class App extends Component {
   }
   
   render() {
+    // const buttonPulse = this.state.isHovered ? "button pulse" : "";
     return (
       <div className="App">
       <header>
@@ -62,19 +71,16 @@ class App extends Component {
             <option>county</option>
             <option>locality</option>
           </select>
-          <select name=""><option>property type</option>
-            <option>flat</option>
-            <option>terrace</option>
-            <option>semi-detached</option>
-            <option>detached</option>
-            </select>
           </div>
           <div className='buttonRowApp'>
           <i title='property type' className="fa fa-home" onClick={this.handleChartRender}></i>
-      <i title='crime data' className="fa fa-balance-scale"></i>
+      <i title='crime data'  className='fa fa-balance-scale'></i>
       <i title='broadband speed' className="fa fa-wifi"></i>
       <i title='natural disaster risk' className="fa fa-bolt"></i>
       </div>
+
+{/* how to do multiple classnames  {`fa fa-balance-scale ${buttonPulse}`} onMouseEnter={this.handleHover} onMouseLeave={this.handleHover} */}
+
  {/* mobile sidebar - horizontal */}
 
         <div className='sidebarHoriz'>
