@@ -50,8 +50,8 @@ class ChartPropertyType extends React.Component {
           ? <div></div>
           : <Polar
             data={chartData}
-            width={500}
-            height={600}
+            width={400}
+            height={500}
             options={{
               maintainAspectRatio: false
             }}

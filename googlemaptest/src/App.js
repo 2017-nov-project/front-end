@@ -29,6 +29,12 @@ class App extends Component {
     .catch(err =>
     this.setState({errorMsg: 'information not found'}))
   }
+
+  handleChartRender = event => {
+    this.setState({
+      showChart: !this.state.showChart
+    })
+  }
   
   render() {
     return (
@@ -63,7 +69,12 @@ class App extends Component {
             <option>detached</option>
             </select>
           </div>
-
+          <div className='buttonRowApp'>
+          <i title='property type' className="fa fa-home" onClick={this.handleChartRender}></i>
+      <i title='crime data' className="fa fa-balance-scale"></i>
+      <i title='broadband speed' className="fa fa-wifi"></i>
+      <i title='natural disaster risk' className="fa fa-bolt"></i>
+      </div>
  {/* mobile sidebar - horizontal */}
 
         <div className='sidebarHoriz'>
@@ -92,7 +103,7 @@ class App extends Component {
 
       <div className='mapAndSidebar'>
         <div className='mapArea'>
-            <Map userInput={this.state.userInput}/>
+        {this.state.showChart ? <ChartPropertyType /> : <Map userInput={this.state.userInput}/> }
         </div>
 
             <div className='sidebarDefault'>

@@ -90,12 +90,8 @@ loadPublicTransportMap = (event) => {
       <div>
       <div className='buttonRow'>
       <i title='heatmap' className="fa fa-map" onClick={this.loadHeatmap}></i>
-      <i title='property type' className="fa fa-home"></i>
       <i title='cycle routes' className="fa fa-bicycle" onClick={this.loadBikeMap}></i>
       <i title='public transport' className="fa fa-subway" onClick={this.loadPublicTransportMap}></i>
-      <i title='crime data' className="fa fa-balance-scale"></i>
-      <i title='broadband speed' className="fa fa-wifi"></i>
-      <i title='natural disaster risk' className="fa fa-bolt"></i>
       </div>
       <div className='actualMap' ref="map" style={mapStyle}></div>
       <div>

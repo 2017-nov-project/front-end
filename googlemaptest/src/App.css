@@ -1,9 +1,21 @@
 .postcodeInput, select, .App {
   font-family: Quicksand, sans-serif;
+
 }
 
 .wrapper {
   border: 1px solid rgb(233, 228, 228);
+}
+
+.chart {
+
+}
+
+.mapAndSidebar {
+ 
+  display: flex;
+
+
 }
 
 /* h1, h2, h3, h4, h5, h6 {
@@ -66,13 +78,26 @@ header {
 }
 
 .buttonRow {
+  /* border: 1px solid black; */
   display: flex;
-  justify-content: flex-start space-evenly;
+  justify-content: flex-start;
   flex-flow: row wrap;
-  width: 50%;
-  margin-left: -0.4em;
+  width: 60%;
+  /* margin-left: -0.4em; */
   margin-bottom: 0.5em;
 }
+
+.buttonRowApp {
+  /* border: 1px solid black; */
+  display: flex;
+  justify-content: flex-end;
+  flex-flow: row wrap;
+  width: 25.5em;
+  /* margin-left: -0.4em; */
+  margin-bottom: 0.5em;
+}
+
+
 
 .fa:hover {
   box-shadow: 0px 0px 50px 1px slategray;
@@ -159,13 +184,15 @@ select {
 }
 
 .sidebarDefault {
+ 
   border: 1px solid rgb(166, 166, 185);
   height: 600px;
   width: 20%;
-  margin-top: 62px;
   margin-left: 20px;
   padding: 0.5em 0em 0em 1.5em;
 }
+
+
 
 /* mobile sidebar */
 
