@@ -94,22 +94,21 @@ loadDensityMap = (event) => {
   trafficLayer.setMap(this.map);
 }
 
-
   render() {
     const mapStyle = {
-      width: 750,
-      height: 550,
-      border: '1px solid black'
+      width: 900,
+      height: 600,
+      border: '1px solid gray'
     };
     
     return (
       <div>
-      <div className='buttonRow'>
-      <i title='heatmap' className="fa fa-map" onClick={this.loadHeatmap}></i>
-      <i title='cycle routes' className="fa fa-bicycle" onClick={this.loadBikeMap}></i>
-      <i title='public transport' className="fa fa-subway" onClick={this.loadPublicTransportMap}></i>
-      <i title='traffic density' className="fa fa-car" onClick={this.loadDensityMap}></i>
-      <i title='natural disaster risk' className="fa fa-bolt"></i>
+      <div className='buttonRowMap'>
+      <i title='heatmap' className="fa fa-map hvr-grow" onClick={this.loadHeatmap}></i>
+      <i title='cycle routes' className="fa fa-bicycle hvr-grow" onClick={this.loadBikeMap}></i>
+      <i title='public transport' className="fa fa-subway hvr-grow" onClick={this.loadPublicTransportMap}></i>
+      <i title='traffic density' className="fa fa-car hvr-grow" onClick={this.loadDensityMap}></i>
+      <i title='natural disaster risk' className="fa fa-bolt hvr-grow "></i>
       </div>
       <div className='actualMap' ref="map" style={mapStyle}></div>
       <div>

@@ -46,32 +46,27 @@ class App extends Component {
           <ChartPropertyType />
           <ChartNewOld />
           </div> */}
-
-
         <div className='inputrow'>
-        <form onSubmit={this.handleSubmit}><input ref={(input) => this.input = input} required title="3 characters minimum" className='postcodeInput' placeholder='enter postcode or town' type="text"></input></form>
+          <form onSubmit={this.handleSubmit}><input ref={(input) => this.input = input} required title="3 characters minimum" className='postcodeInput' placeholder='enter postcode or town' type="text"></input></form>
           <p className='errHandle'>{this.state.errorMsg}</p>
-        </div>
-        <div className='inputrow2'>
           <select name=""><option>search by...</option>
-          <option>postcode</option>
+            <option>postcode</option>
             <option>town</option>
             <option>county</option>
             <option>locality</option>
           </select>
           </div>
-          <div className='buttonRowApp'>
-          <i title='property type' className="fa fa-home" onClick={this.handleChartRender}></i>
-      <i title='crime data'  className='fa fa-balance-scale'></i>
-      <i title='broadband speed' className="fa fa-wifi"></i>
-      
-      </div>
+          <div className = 'buttonDeskWrapper'>
+          <div className='buttonRowAppDesktop'>
+            <i title='property type' className="fa fa-home hvr-grow" onClick={this.handleChartRender}></i>
+            <i title='crime data'  className='fa fa-balance-scale hvr-grow'></i>
+            <i title='broadband speed' className="fa fa-wifi hvr-grow"></i>
+          </div>
+          </div>
 
  {/* mobile sidebar - horizontal */}
-
         <div className='sidebarHoriz'>
          <div className='horizRow1'>
-    
            <h4 className='avSoldPriceTitle'>average sold price</h4>
            <h4 className='valueChangeTitle'>value change in last...</h4>
          </div>
@@ -87,36 +82,38 @@ class App extends Component {
                <span className="slider round"></span>
              </label>
              <div id='5y'>5yr</div>
-             </div>
+            </div>
            </div>
-       </div>
-
-      {/* desktop sidebar - vertical */}
-
-      <div className='mapAndSidebar'>
-        <div className='mapArea'>
-        {this.state.showChart ? <ChartPropertyType /> : <Map userInput={this.searched}/> }
         </div>
 
-            <div className='sidebarDefault'>
-              <h4 className='avSoldPriceTitle'>average sold price</h4>
-              <h5 className='avSoldPriceAmount'>£{this.state.averagePrice}</h5>
-              <h4 className='valueChangeTitle'>value change in last...</h4>
-              <h5 className='plusAmount'>+ 4.8%</h5>
-              <label className="switch">
-                <input type="checkbox"/>
-                <span className="slider round"></span>
-              </label>
-                <div className='amounts'>
-                  <div>12m</div>
-                  <div>5yr</div>
-                </div>
-            </div> {/* sidebarDefault        */}
-          </div>  {/* mapandsidebar */}
-        </div> {/* wrapper */}
-      </div> 
-    );
-  }
+      {/* desktop sidebar - vertical */}
+    <div className = 'mapSideWrapper'>
+      <div className='mapAndSidebar'>
+        <div className='buttonRowAppMobile'>
+          <i title='property type' className="fa fa-home hvr-grow" onClick={this.handleChartRender}></i>
+          <i title='crime data'  className='fa fa-balance-scale hvr-grow'></i>
+          <i title='broadband speed' className="fa fa-wifi hvr-grow"></i>
+        </div>
+      {this.state.showChart ? <ChartPropertyType /> : <Map userInput={this.searched}/> }
+        <div className='sidebarDefault'>
+          <h4 className='avSoldPriceTitle'>average sold price</h4>
+          <h5 className='avSoldPriceAmount'>£{this.state.averagePrice}</h5>
+          <h4 className='valueChangeTitle'>value change in last...</h4>
+          <h5 className='plusAmount'>+ 4.8%</h5>
+          <label className="switch">
+            <input type="checkbox"/>
+            <span className="slider round"></span>
+          </label>
+            <div className='amounts'>
+              <div>12m</div>
+              <div>5yr</div>
+            </div>
+        </div> {/* sidebarDefault        */}
+      </div>  {/* mapandsidebar */}
+     </div>
+    </div> {/* wrapper */}
+  </div> 
+  )}
 }
 
 

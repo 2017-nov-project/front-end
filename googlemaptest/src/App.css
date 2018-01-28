@@ -1,387 +1,361 @@
 .postcodeInput, select, .App {
-  font-family: Quicksand, sans-serif;
-
+    font-family: Quicksand, sans-serif;
 }
 
 .wrapper {
-  border: 1px solid rgb(233, 228, 228);
+ 
 }
 
-
-/* @keyframes pulse_animation {
-	0% { transform: scale(1); }
-	30% { transform: scale(1); }
-	40% { transform: scale(1.08); }
-	50% { transform: scale(1); }
-	60% { transform: scale(1); }
-	70% { transform: scale(1.05); }
-	80% { transform: scale(1); }
-	100% { transform: scale(1); }
-}
-
-.pulse {
-	animation-name: pulse_animation;
-	animation-duration: 2000ms;
-	transform-origin:70% 70%;
-	animation-iteration-count: infinite;
-	animation-timing-function: linear;
-} */
-
-.mapAndSidebar {
-  display: flex;
-}
-
-.chart {
-  min-height: 500px;
-  min-width: 400px;
-}
-
-/* h1, h2, h3, h4, h5, h6 {
-  margin: 0;
-  padding: 0;
-} */
+/* ---- App header ---- */
 
 header {
-  display: flex;        
-  flex-direction: column;  
-  justify-content: center;
-  align-items: center; 
-}
-
-.mapArea {
-  color: darkslategray;
-
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .app-title {
-  text-align: center;
-  z-index: 1;
-  position: absolute;
-  top: 1;
-  color: rgb(81, 110, 110);
-  font-family: Josefin Sans, sans-serif;
-  font-weight: 200;
-  font-size: 2.6em;
+    text-align: center;
+    z-index: 1;
+    position: absolute;
+    top: 1;
+    color: rgb(81, 110, 110);
+    font-family: Josefin Sans, sans-serif;
+    font-weight: 200;
+    font-size: 2.6em;
 }
 
 #logoHouse {
-  border: none;
-  padding: 0;
-  margin: 0;
-  margin-top: 0.2em;
-  font-size: 8em;
-  opacity: 0.3;
-  color: rgb(151, 149, 156);
+    border: none;
+    padding: 0;
+    margin: 0;
+    margin-top: 0.2em;
+    font-size: 8em;
+    opacity: 0.3;
+    color: rgb(151, 149, 156);
 }
 
 .app-subtitle {
-  text-align: center;
-  color: rgb(81, 110, 110);
-  font-weight: 400;
-  font-size: 0.8em;
-  letter-spacing: 2px;
+    text-align: center;
+    color: rgb(81, 110, 110);
+    font-weight: 400;
+    font-size: 0.8em;
+    letter-spacing: 2px;
 }
 
-/* ## button row ## */
-
-.fa {
-  font-size: 1.3em;
-  color: darkslategray;
-  margin-top: 0.5em;
-  padding: 0.5em;
-  border: 1px solid lightslategray;
-  border-radius: 8px;
-  width: 1.3em;
-  text-align: center;
-  cursor: pointer;
-}
-
-.buttonRow {
-  /* border: 1px solid black; */
-  display: flex;
-  justify-content: flex-start;
-  flex-flow: row wrap;
-  width: 60%;
-  /* margin-left: -0.4em; */
-  margin-bottom: 0.5em;
-}
-
-.buttonRowApp {
-  /* border: 1px solid black; */
-  display: flex;
-  justify-content: flex-end;
-  flex-flow: row wrap;
-  width: 22.6em;
-  /* margin-left: -0.4em; */
-  margin-bottom: 0.5em;
-}
-
-
-
-.fa:hover {
-  box-shadow: 0px 0px 50px 1px slategray;
-}
-
-
-
-/* ## upper input rows ## */
-.errHandle {
-  padding: 0;
-  margin: 0;
-  font-size:0.9em;
-  color: darkslategray;
-}
+/* ---- User Input Row ---- */
 
 .inputrow {
-  display: flex;        
-  flex-direction: column;  
-  justify-content: center;
-  align-items: center; 
-}
-.inputrow2 {
-  display: flex;
-  justify-content: center;
-  flex-flow: row wrap;
-  margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }
 
 .postcodeInput {
-  height: 2.5em;
-  padding: 0.5em;
-  font-size: 0.9em;
-  border-radius: 10px;
-  width: 15em;
-  background-color: white;
-  border: 1px solid lightgray;
-  margin-top: 1em;
+    height: 2.5em;
+    padding: 0.5em;
+    font-size: 0.9em;
+    border-radius: 10px;
+    width: 15em;
+    background-color: white;
+    border: 1px solid lightgray;
 }
 
 select {
-  font-size: 0.9em;
-  width: 10em;
-  background-color: white;
-  height: 2.9em;
-  border-radius: 10px;
-  margin: 0 1em 0 1em;
-  cursor: pointer;
+    font-size: 0.9em;
+    width: 10em;
+    background-color: white;
+    height: 2.9em;
+    border-radius: 10px;
+    margin: 0.6em;
+    cursor: pointer;
 }
 
-/* sidebar  */
-
-.sidebarHoriz {
-  background-color: rgb(239, 238, 240);
-  border: 1px solid  rgb(239, 238, 240);
-  border-radius: 25px;
-  height: 10em;
-  width: 100%;
-  padding: 0.5em;
-  margin-top: 5px;
-  display: none;
-}
-
-.horizRow1,
-.horizRow2,
-.horizRow3 {
-  display: flex;
-  justify-content: space-evenly;
-  width: 100%;
-}
-
-.horizRow3 {
-  display: flex;
-  justify-content: flex-start space-evenly;
-  flex-flow: row wrap;
-  font-weight: 400;
-  width: 30%;
-}
-
-.row3wrap {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  flex-flow: row wrap;
-}
-
-.sidebarDefault {
- 
-  border: 1px solid rgb(166, 166, 185);
-  height: 600px;
-  width: 20%;
-  margin-left: 20px;
-  padding: 0.5em 0em 0em 1.5em;
-  
+.errHandle {
+    padding: 0;
+    margin: 0;
+    font-size: 0.9em;
+    color: darkslategray;
 }
 
 
+/* First Button Row - Charts/App buttons */
 
-/* mobile sidebar */
-
-@media only screen and (max-width: 1040px) {
-
-  .sidebarDefault {
-    display: none;
-  } 
-  
-   .sidebarHoriz {
-    display: flex;
-    justify-content: flex-start;
-    flex-flow: row wrap;
-  } 
-  }
-
-.mapAndSidebar {
-  /* border: 1px solid red; */
-  display: flex;
-  justify-content: center;
-  flex-flow: row wrap;
-}
-
-.amounts {
-  display: flex;
-  justify-content: flex-start space-between;
-  flex-flow: row wrap;
-  width: 6em;
-}
-
-.avSoldPriceTitle, .valueChangeTitle  {
-  color: darkslategray;
-  font-size: 1.6em;
-  font-weight: 200;
-  margin: 0.5em 0em 0.5em 0em;
-
-}
-
-.avSoldPriceAmount, .plusAmount {
-  color: darkslategray;
-  font-size: 2em;
-  margin: 0.5em 0em 0.5em 0em;
-}
-
-@media only screen and (max-width: 655px) {
-  body {
-    font-size: 0.75em;
-  }
-  .buttonRow {
-    display: flex;
-    justify-content: center;
-    flex-flow: row wrap;
-    width: 100%;
-    margin-bottom: 0.5em;
-  }
-
-  .fa {
+.fa {
     font-size: 1.3em;
     color: darkslategray;
-    margin-top: 0.5em;
+    margin: 0.2em;
     padding: 0.5em;
     border: 1px solid lightslategray;
     border-radius: 8px;
     width: 1.3em;
     text-align: center;
     cursor: pointer;
-  }
+}
 
-  .sidebarHoriz {
-  font-size: 1em;
-  }
-  .avSoldPriceAmount, .plusAmount {
-  font-size: 1.5em;
-  }
-  
-  .inputrow {
-  width: 100%;
+.fa:hover {
+    box-shadow: 0px 0px 50px 1px slategray;
+}
+
+/* ---- Map/Sidebar Area ---- */
+
+.mapSideWrapper, .buttonDeskWrapper {
   display: flex;
   justify-content: center;
-  flex-flow: row;
- } 
- select {
-  width: 30%;
-  height: 4em;
-}
-.postcodeInput {
-  height: 3em;
-  width: 45%;
+  flex-flow: row wrap;
 }
 
+.mapAndSidebar {
+    display: flex;
+    justify-content: flex-start space-between;
+    flex-flow: row wrap;
+    width: 95%;
 }
 
-@media only screen and (max-width: 480px) {
-  
-  select {
-    width: 60%;
-    height: 4em;
-  }
-  .sidebarHoriz {
-    font-size: 0.9em;
-    }
-    .avSoldPriceAmount, .plusAmount {
-    font-size: 1.4em;
-    }
+.buttonRowMap {
+    display: flex;
+    justify-content: flex-start;
+    flex-flow: row wrap;
+    width: 100%;
 }
 
-
-
-
-
-/* slider switch */
-
-.switch {
-  position: relative;
-  display: inline-block;
-  width: 6em;
-  height: 34px;
+.buttonRowAppDesktop {
+  display: flex;
+  justify-content: flex-start;
+  flex-flow: row wrap;
+  width: 95%;
 }
 
-/* Hide default HTML checkbox */
-.switch input {
+.buttonRowAppMobile {
   display: none;
 }
 
-/* The slider */
+.chart {
+  margin-left: 18em;
+  padding: 1em;
+}
+
+/* ---- Sidebar - Horizontal/Mobile ----  */
+
+.sidebarHoriz {
+    background-color: rgb(239, 238, 240);
+    border: 1px solid rgb(239, 238, 240);
+    border-radius: 25px;
+    height: 10em;
+    width: 100%;
+    padding: 0.5em;
+    display: none;
+}
+
+.horizRow1,
+.horizRow2,
+.horizRow3 {
+    display: flex;
+    justify-content: space-evenly;
+    width: 100%;
+}
+
+.horizRow3 {
+    display: flex;
+    justify-content: flex-start space-evenly;
+    flex-flow: row wrap;
+    font-weight: 400;
+    width: 30%;
+}
+
+.row3wrap {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
+}
+
+/* ---- Sidebar - Vertical/Desktop ----  */
+
+.sidebarDefault {
+    border: 1px solid rgb(166, 166, 185);
+    height: 600px;
+    width: 20%;
+    margin-left: 20px;
+    margin-top: 51px;
+    padding: 0.5em 0em 0em 1.5em;
+}
+
+.amounts {
+    display: flex;
+    justify-content: flex-start space-between;
+    flex-flow: row wrap;
+    width: 6em;
+}
+
+.avSoldPriceTitle,
+.valueChangeTitle {
+    color: darkslategray;
+    font-size: 1.6em;
+    font-weight: 200;
+    margin: 0.5em 0em 0.5em 0em;
+}
+
+.avSoldPriceAmount,
+.plusAmount {
+    color: darkslategray;
+    font-size: 2em;
+    margin: 0.5em 0em 0.5em 0em;
+}
+
+/* ---- Media Queries - Sidebars ---- */
+
+@media only screen and (max-width: 1040px) {
+    .sidebarDefault, .buttonRowAppDesktop {
+        display: none;
+    }
+    .buttonRowAppMobile {
+      display: flex;
+      justify-content: flex-end;
+      flex-flow: row wrap;
+    }
+   
+    .sidebarHoriz {
+        display: flex;
+        justify-content: flex-start;
+        flex-flow: row wrap;
+    }
+}
+
+@media only screen and (max-width: 655px) {
+    body {
+        font-size: 0.75em;
+    }
+    .buttonRow {
+        display: flex;
+        justify-content: center;
+        flex-flow: row wrap;
+        width: 100%;
+        margin-bottom: 0.5em;
+    }
+    .fa {
+        font-size: 1.3em;
+        color: darkslategray;
+        margin-top: 0.5em;
+        padding: 0.5em;
+        border: 1px solid lightslategray;
+        border-radius: 8px;
+        width: 1.3em;
+        text-align: center;
+        cursor: pointer;
+    }
+    .sidebarHoriz {
+        font-size: 1em;
+    }
+    .avSoldPriceAmount,
+    .plusAmount {
+        font-size: 1.5em;
+    }
+    .inputrow {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        flex-flow: row;
+    }
+    select {
+        width: 30%;
+        height: 4em;
+    }
+    .postcodeInput {
+        height: 3em;
+        width: 45%;
+    }
+}
+
+@media only screen and (max-width: 480px) {
+    select {
+        width: 60%;
+        height: 4em;
+    }
+    .sidebarHoriz {
+        font-size: 0.9em;
+    }
+    .avSoldPriceAmount,
+    .plusAmount {
+        font-size: 1.4em;
+    }
+}
+
+
+/* ---- slider switch ---- */
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 6em;
+    height: 34px;
+}
+
+.switch input {
+    display: none;
+}
+
 .slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: lightslategray;
-  transition: 0.4s;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: lightslategray;
+    transition: 0.4s;
 }
 
 .slider:before {
-  position: absolute;
-  content: "";
-  height: 26px;
-  width: 26px;
-  left: 8px;
-  bottom: 4px;
-  background-color: white;
-  transition: 0.4s;
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 8px;
+    bottom: 4px;
+    background-color: white;
+    transition: 0.4s;
 }
 
-input:checked + .slider {
-  background-color: darkslategray;
+input:checked+.slider {
+    background-color: darkslategray;
 }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px #2196f3;
+input:focus+.slider {
+    box-shadow: 0 0 1px #2196f3;
 }
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(5px);
-  -ms-transform: translateX(26px);
-  transform: translateX(56px);
-  /*   slide width */
+input:checked+.slider:before {
+    -webkit-transform: translateX(5px);
+    -ms-transform: translateX(26px);
+    transform: translateX(56px);
 }
 
-/* Rounded sliders */
 .slider.round {
-  border-radius: 34px;
+    border-radius: 34px;
 }
 
 .slider.round:before {
-  border-radius: 50%;
+    border-radius: 50%;
 }
 
+/* ---- Button Hover ----  */
+
+.hvr-grow {
+  display: inline-block;
+  vertical-align: middle;
+  -webkit-transform: perspective(1px) translateZ(0);
+  transform: perspective(1px) translateZ(0);
+  box-shadow: 0 0 1px transparent;
+  -webkit-transition-duration: 0.3s;
+  transition-duration: 0.3s;
+  -webkit-transition-property: transform;
+  transition-property: transform;
+}
+.hvr-grow:hover, .hvr-grow:focus, .hvr-grow:active {
+  -webkit-transform: scale(1.1);
+  transform: scale(1.1);
+}
 
