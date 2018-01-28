@@ -14,12 +14,18 @@ return fetch (`http://localhost:4000/api/coordinates`)
   })
 }
 
-  export const fetchCoordinatesByPostcode = (userInput) => {
+  export const fetchCoordinatesByInput = (userInput) => {
     if(!userInput) return;
+    if (userInput.userInput.match(/.\d/)) {
     let userPostcode = userInput.userInput
     return fetch (`http://localhost:4000/api/postcode/${userPostcode}/coordinates`)
     .then(res => res.json())
+  } else {
+    let userTown = userInput.userInput
+    return fetch(`http://localhost:4000/api/town/${userTown}/coordinates`)
+    .then(res => res.json())
     .catch(res => console.log('err'))
+    }
   }
 
   export const getAveragePriceByInput = input => {

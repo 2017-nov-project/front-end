@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {fetchAllCoordinates, fetchCoordinatesByPostcode} from './api';
+import {fetchAllCoordinates, fetchCoordinatesByInput} from './api';
 
 const google = window.google;
 
@@ -12,8 +12,7 @@ class Map extends React.Component {
       lng: -2.239902
     },
     zoom: 16,
-    isHeatmap: false,
-    coords: []
+    isHeatmap: false
   }
 
   componentDidMount() {
@@ -29,19 +28,31 @@ class Map extends React.Component {
     });
   }
 
+  componentWillUnmount() {
+   google.maps.event.clearInstanceListeners(this.map)
+}
+
   componentWillReceiveProps(userInput) {
-    fetchCoordinatesByPostcode(userInput)
+    fetchCoordinatesByInput(userInput)
     .then (res => {
     let center = {...this.state.center}
     center.lat = res.coordinates.latitude
     center.lng = res.coordinates.longitude
-    this.setState({center})
+    this.setState({center, zoom: 12})
     })
+    .then (res => {
     this.map = new google.maps.Map(this.refs.map, {
       center: this.state.center,
       zoom: this.state.zoom
     })
-  }
+    this.map.addListener('zoom_changed', () => {
+      this.handleZoom()
+    });
+    this.map.addListener('center_changed', () => {
+       this.handleCenter()
+    });
+  })
+}
   
   handleZoom = event => {
       this.setState({

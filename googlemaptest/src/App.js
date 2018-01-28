@@ -11,23 +11,17 @@ class App extends Component {
     averagePrice: 0,
     userInput: null,
     showChart: false,
-    errorMsg: '',
-    isHovered: false
+    errorMsg: ''
   }
 
-  // handleHover = event => {
-  //   this.setState({
-  //       isHovered: !this.state.isHovered
-  //   })
-  // }
-
-  handleAveragePriceRequest = (event) => {
+  
+  handleSubmit = (event) => {
+    this.searched = this.input.value.toUpperCase()
     event.preventDefault()
-    getAveragePriceByInput(this.input.value.toUpperCase())
+    getAveragePriceByInput(this.searched)
     .then(res =>
     this.setState({
       averagePrice: res[0].average,
-      userInput: this.input.value.toUpperCase(),
       errorMsg: ''}))
     .catch(err =>
     this.setState({errorMsg: 'information not found'}))
@@ -40,7 +34,6 @@ class App extends Component {
   }
   
   render() {
-    // const buttonPulse = this.state.isHovered ? "button pulse" : "";
     return (
       <div className="App">
       <header>
@@ -56,7 +49,7 @@ class App extends Component {
 
 
         <div className='inputrow'>
-        <form onSubmit={this.handleAveragePriceRequest}><input ref={(input) => this.input = input} required title="3 characters minimum" className='postcodeInput' placeholder='enter postcode or town' type="text"></input></form>
+        <form onSubmit={this.handleSubmit}><input ref={(input) => this.input = input} required title="3 characters minimum" className='postcodeInput' placeholder='enter postcode or town' type="text"></input></form>
           <p className='errHandle'>{this.state.errorMsg}</p>
         </div>
         <div className='inputrow2'>
@@ -73,8 +66,6 @@ class App extends Component {
       <i title='broadband speed' className="fa fa-wifi"></i>
       
       </div>
-
-{/* how to do multiple classnames  {`fa fa-balance-scale ${buttonPulse}`} onMouseEnter={this.handleHover} onMouseLeave={this.handleHover} */}
 
  {/* mobile sidebar - horizontal */}
 
@@ -104,7 +95,7 @@ class App extends Component {
 
       <div className='mapAndSidebar'>
         <div className='mapArea'>
-        {this.state.showChart ? <ChartPropertyType /> : <Map userInput={this.state.userInput}/> }
+        {this.state.showChart ? <ChartPropertyType /> : <Map userInput={this.searched}/> }
         </div>
 
             <div className='sidebarDefault'>
