@@ -49,13 +49,13 @@ class App extends Component {
         <div className='inputrow'>
           <form onSubmit={this.handleSubmit}><input ref={(input) => this.input = input} required title="3 characters minimum" className='postcodeInput' placeholder='enter postcode or town' type="text"></input>
           <p className='errHandle'>{this.state.errorMsg}</p>
-            <select required ref={(searchtype) => this.searchtype = searchtype} onChange={this.handleDropDown}>
+            {/* <select required ref={(searchtype) => this.searchtype = searchtype} onChange={this.handleDropDown}>
               <option value="" disabled selected>search by...</option>
               <option value='postcode'>postcode</option>
               <option value='town'>town</option>
               <option value='county'>county</option>
               <option value='locality'>locality</option>
-            </select>
+            </select> */}
           </form>
           </div>
           <div className = 'buttonDeskWrapper'>
@@ -66,35 +66,36 @@ class App extends Component {
           </div>
           </div>
  {/* mobile sidebar - horizontal */}
-        <div className='sidebarHoriz'>
-         <div className='horizRow1'>
-           <h4 className='avSoldPriceTitle'>average sold price</h4>
-           <h4 className='valueChangeTitle'>value change in last...</h4>
-         </div>
-         <div className='horizRow2'>
-           <h5 className='avSoldPriceAmount'>£{this.state.averagePrice}</h5>
-           <h5 className='plusAmount'>+ 4.8%</h5>
-         </div>
-         <div className='row3wrap'>
-           <div className='horizRow3'>
-             <div id='12m'>12m</div>
-             <label className="switch">
-               <input type="checkbox"/>
-               <span className="slider round"></span>
-             </label>
-             <div id='5y'>5yr</div>
-            </div>
+    <div className='sidebarHoriz'>
+           <div className='horizRow1'>
+             <h4 className='avSoldPriceTitle'>average sold price</h4>
+             <h4 className='valueChangeTitle'>value change in last...</h4>
            </div>
-        </div>
-
-      {/* desktop sidebar - vertical */}
-    <div className = 'mapSideWrapper'>
-      <div className='mapAndSidebar'>
-        <div className='buttonRowAppMobile'>
+           <div className='horizRow2'>
+             <h5 className='avSoldPriceAmount'>£{this.state.averagePrice}</h5>
+             <h5 className='plusAmount'>+ 4.8%</h5>
+           </div>
+           <div className='row3wrap'>
+              <div className='horizRow3'>
+                <div id='12m'>12m</div>
+                <label className="switch">
+                  <input type="checkbox"/>
+                  <span className="slider round"></span>
+                </label>
+                <div id='5y'>5yr</div>
+              </div>
+            </div>
+    </div>
+    <div className='buttonRowMobWrapper'>
+    <div className='buttonRowAppMobile'>
           <i title='property type' className="fa fa-home hvr-grow" onClick={this.handleChartRender}></i>
           <i title='crime data'  className='fa fa-balance-scale hvr-grow'></i>
           <i title='broadband speed' className="fa fa-wifi hvr-grow"></i>
         </div>
+    </div>
+      {/* desktop sidebar - vertical */}
+    <div className = 'mapSideWrapper'>
+      <div className='mapAndSidebar'>
       {this.state.showChart ? <ChartPropertyType /> : <Map userInput={this.searched} searchType = {this.searchtype}/> }
         <div className='sidebarDefault'>
           <h4 className='avSoldPriceTitle'>average sold price</h4>

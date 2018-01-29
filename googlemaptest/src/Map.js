@@ -134,12 +134,7 @@ loadDensityMap = (event) => {
 
 
   render() {
-    const mapStyle = {
-      width: 900,
-      height: 600,
-      border: '1px solid gray'
-    };
-    
+     
     return (
       <div>
       <div className='buttonRowMap'>
@@ -149,7 +144,7 @@ loadDensityMap = (event) => {
       <i title='traffic density' className="fa fa-car hvr-grow" onClick={this.loadDensityMap}></i>
       <i title='natural disaster risk' className="fa fa-bolt hvr-grow" onClick={this.removeHeatMap}></i>
       </div>
-      <div className='actualMap' ref="map" style={mapStyle}></div>
+      <div className='actualMap' ref="map"></div>
       <div>
        <p>props and state provided by google maps event handlers</p>
        <p>current long:  {this.state.center.lat}</p>
