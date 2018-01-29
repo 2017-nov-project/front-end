@@ -12,7 +12,8 @@ class Map extends React.Component {
       lng: -2.239902
     },
     zoom: 16,
-    isHeatmap: false
+    isHeatmap: false,
+    isBikemap: false
   }
 
   componentDidMount() {
@@ -68,16 +69,16 @@ class Map extends React.Component {
     this.setState({center})
 }
   
-  loadHeatmap = (event) => { 
+  loadHeatmap = (event) => {
     fetchAllCoordinates()
     .then(heatmapData => {
       let heatmap = new google.maps.visualization.HeatmapLayer({
         data: heatmapData
       })
-      heatmap.setMap(this.map);
-    }
-  )
-}
+      heatmap.setMap(this.map)
+    })
+  }
+
 
 loadBikeMap = (event) => { 
     let bikemap = new google.maps.BicyclingLayer();

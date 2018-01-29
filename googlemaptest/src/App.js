@@ -3,6 +3,7 @@ import Map from './Map.js'
 import './App.css';
 import ChartPropertyType from './Chart-PropertyType.js'
 import ChartNewOld from './Chart-NewOld.js'
+import ChartType from './Chart-Type.js'
 import {getAveragePriceByInput} from './api'
 
 
@@ -10,6 +11,7 @@ class App extends Component {
   state = {
     averagePrice: 0,
     userInput: null,
+    searchType: null,
     showChart: false,
     errorMsg: ''
   }
@@ -17,8 +19,9 @@ class App extends Component {
   
   handleSubmit = (event) => {
     this.searched = this.input.value.toUpperCase()
+    this.searchtype = this.searchtype.value.toUpperCase()
     event.preventDefault()
-    getAveragePriceByInput(this.searched)
+    getAveragePriceByInput(this.searched, this.searchtype)
     .then(res =>
     this.setState({
       averagePrice: res[0].average,
@@ -32,6 +35,10 @@ class App extends Component {
       showChart: !this.state.showChart
     })
   }
+
+  handleDropDown = event => {
+
+  }
   
   render() {
     return (
@@ -41,20 +48,19 @@ class App extends Component {
         <h1 className="app-title">homeTown</h1>
         <h4 className="app-subtitle">find average sold prices, crime data, broadband speed and more in your area</h4>
       </header>
+      {/* <ChartType/> */}
       <div className='wrapper'>
-          {/* <div className='ChartArea'>
-          <ChartPropertyType />
-          <ChartNewOld />
-          </div> */}
         <div className='inputrow'>
-          <form onSubmit={this.handleSubmit}><input ref={(input) => this.input = input} required title="3 characters minimum" className='postcodeInput' placeholder='enter postcode or town' type="text"></input></form>
+          <form onSubmit={this.handleSubmit}><input ref={(input) => this.input = input} required title="3 characters minimum" className='postcodeInput' placeholder='enter postcode or town' type="text"></input>
           <p className='errHandle'>{this.state.errorMsg}</p>
-          <select name=""><option>search by...</option>
-            <option>postcode</option>
-            <option>town</option>
-            <option>county</option>
-            <option>locality</option>
-          </select>
+            <select required ref={(searchtype) => this.searchtype = searchtype} onChange={this.handleDropDown}>
+              <option value="" disabled selected>search by...</option>
+              <option value='postcode'>postcode</option>
+              <option value='town'>town</option>
+              <option value='county'>county</option>
+              <option value='locality'>locality</option>
+            </select>
+          </form>
           </div>
           <div className = 'buttonDeskWrapper'>
           <div className='buttonRowAppDesktop'>
@@ -63,7 +69,6 @@ class App extends Component {
             <i title='broadband speed' className="fa fa-wifi hvr-grow"></i>
           </div>
           </div>
-
  {/* mobile sidebar - horizontal */}
         <div className='sidebarHoriz'>
          <div className='horizRow1'>
@@ -94,7 +99,7 @@ class App extends Component {
           <i title='crime data'  className='fa fa-balance-scale hvr-grow'></i>
           <i title='broadband speed' className="fa fa-wifi hvr-grow"></i>
         </div>
-      {this.state.showChart ? <ChartPropertyType /> : <Map userInput={this.searched}/> }
+      {this.state.showChart ? <ChartPropertyType /> : <Map userInput={this.searched} searchType = {this.searchtype}/> }
         <div className='sidebarDefault'>
           <h4 className='avSoldPriceTitle'>average sold price</h4>
           <h5 className='avSoldPriceAmount'>£{this.state.averagePrice}</h5>
