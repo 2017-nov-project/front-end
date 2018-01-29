@@ -2,7 +2,7 @@
 const google = window.google;
 
 export const fetchAllCoordinates = () => {
-return fetch (`http://localhost:4000/api/coordinates`)
+return fetch (`http://localhost:4000/api/coordinates/postcodes`)
 .then(res => res.json())
 .then(res => {
   return res.coordinatesArr.map(location => {
