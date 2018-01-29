@@ -11,24 +11,21 @@ class ChartType extends React.Component {
 
   componentDidMount(event) {
     let averagePriceByCounty = [];
-    this.fetchAverageByType(this.state.searchType,this.state.search, 'D')
-      .then(res => averagePriceByCounty.push(res))
-      .then(() => this.fetchAverageByType(this.state.searchType,this.state.search, 'S'))
-      .then(res => averagePriceByCounty.push(res))
-      .then(() => this.fetchAverageByType(this.state.searchType,this.state.search, 'T'))
-      .then(res => averagePriceByCounty.push(res))
-      .then(() => this.fetchAverageByType(this.state.searchType,this.state.search, 'F'))
-      .then(res => averagePriceByCounty.push(res))
-      .then(() => {
-        this.setState({ data: averagePriceByCounty, loading: false })
-      });
+    const propertyTypes =  ['D', 'S', 'T', 'F' ];
+
+    return Promise.all(propertyTypes.map( type => {
+
+      return this.fetchAverageByType(this.state.searchType, this.state.search, type)
+      
+    })).then(averagePriceByCounty => this.setState({ data: averagePriceByCounty, loading: false }))
   }
 
   fetchAverageByType(searchType, search, propertyType) {
     return fetch(`https://peaceful-waters-20110.herokuapp.com/api/${searchType}/${search}/average_price?property_type=${propertyType}`)
       .then(resbuffer => resbuffer.json())
       .then(res => {
-        if (res.length) {
+        console.log('kkkkkk', res)
+        if (res.average) {
           return res.average
         } else {
           return 0
