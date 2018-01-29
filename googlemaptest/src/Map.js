@@ -13,7 +13,9 @@ class Map extends React.Component {
     },
     zoom: 16,
     isHeatmap: false,
-    isBikemap: false
+    isBikemap: false,
+    isTransmap: false,
+    isDensitymap: false
   }
 
   componentDidMount() {
@@ -68,42 +70,68 @@ class Map extends React.Component {
     center.lng = newMap.lng()
     this.setState({center})
 }
+
+handleReRender = event => {
+  this.map = new google.maps.Map(this.refs.map, {
+    center: this.state.center,
+    zoom: this.state.zoom
+  }) 
+}
   
   loadHeatmap = (event) => {
-    fetchAllCoordinates()
-    .then(heatmapData => {
-      let heatmap = new google.maps.visualization.HeatmapLayer({
+    let heatmap = new google.maps.visualization.HeatmapLayer();
+    if (this.state.isHeatmap) {
+       this.setState({isHeatmap: false})
+       heatmap.setMap(null)
+       this.handleReRender()
+    } else {
+      fetchAllCoordinates()
+      .then(heatmapData => {
+      heatmap = new google.maps.visualization.HeatmapLayer({
         data: heatmapData
       })
       heatmap.setMap(this.map)
-    })
+      this.setState({isHeatmap: true})
+      })
+    }
   }
 
-//   removeHeatMap = (event) => {
-   
-//     let heatmap = new google.maps.visualization.HeatmapLayer
-//     console.log('called')
-//     console.log(heatmap)
-//     if (heatmap) {
-//      heatmap.setMap(null);
-//   }
-// }
-
-
-loadBikeMap = (event) => { 
-    let bikemap = new google.maps.BicyclingLayer();
-    bikemap.setMap(this.map);
+loadBikeMap = (event) => {
+  let bikemap = new google.maps.BicyclingLayer();
+  if (this.state.isBikemap) {
+     this.setState({isBikemap: false})
+     bikemap.setMap(null)
+     this.handleReRender()
+  } else {
+    bikemap.setMap(this.map)
+    this.setState({isBikemap: true})
+  }
 }
 
 loadPublicTransportMap = (event) => { 
   let transitLayer = new google.maps.TransitLayer();
-  transitLayer.setMap(this.map);
+  if (this.state.isTransmap) {
+    this.setState({isTransmap: false})
+    transitLayer.setMap(null)
+    this.handleReRender()
+  } else {
+    transitLayer.setMap(this.map)
+    this.setState({isTransmap: true})
+  }
 }
 
 loadDensityMap = (event) => {
   let trafficLayer = new google.maps.TrafficLayer();
-  trafficLayer.setMap(this.map);
+  if (this.state.isDensitymap) {
+    this.setState({isDensitymap: false})
+    trafficLayer.setMap(null)
+    this.handleReRender()
+  } else {
+    trafficLayer.setMap(this.map)
+    this.setState({isDensitymap: true})
+  }
 }
+
 
   render() {
     const mapStyle = {
