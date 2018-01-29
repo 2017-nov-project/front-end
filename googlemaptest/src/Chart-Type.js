@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { Bar, Line, Pie, Polar } from 'react-chartjs-2';
 
-class ChartType extends React.Component {
+class ChartType extends Component {
   state = {
     data: [],
     loading: true,
@@ -10,30 +10,24 @@ class ChartType extends React.Component {
   }
 
   componentDidMount(event) {
-    let averagePriceByCounty = [];
     const propertyTypes =  ['D', 'S', 'T', 'F' ];
+
     return Promise.all(propertyTypes.map( type => {
-      return this.fetchAverageByType(this.state.searchType, this.state.search, type)
-    })).then(averagePriceByCounty => this.setState({ data: averagePriceByCounty, loading: false }))
+
+
+      return this.fetchAverage(this.state.searchType, this.state.search, type)
+      
+    })).then(data => this.setState({ data, loading: false }))
   }
 
-  componentWillReceiveProps = (props) => {
-    console.log(props)
-    // receives searchType and userInput (postcode, town...) from App.js
-    //will need property types?
-  }
 
-  fetchAverageByType(searchType, search, propertyType) {
-    return fetch(`https://peaceful-waters-20110.herokuapp.com/api/${searchType}/${search}/average_price?property_type=${propertyType}`)
-      .then(resbuffer => resbuffer.json())
-      .then(res => {
-        if (res.average) {
-          return res.average
-        } else {
-          return 0
-        }
-      })
-  }
+  fetchAverage(searchType, search, propertyType) {
+    const domain = 'https://peaceful-waters-20110.herokuapp.com/api'
+    const path = `${searchType}/${search}/average_price?property_type=${propertyType}`
+    return fetch(`${domain}/${path}`)
+      .then(buffer => buffer.json())
+      .then(res => res.average ? res.average : 0)
+  };
 
   render() {
     const searchtype = this.state.searchType
