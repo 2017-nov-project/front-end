@@ -25,7 +25,7 @@ class ChartPropertyType extends React.Component {
   fetchAverageByType(type) {
     return fetch(`https://peaceful-waters-20110.herokuapp.com/api/average_price?property_type=${type}`)
       .then(resbuffer => resbuffer.json())
-      .then(res => res[0].average);
+      .then(res => res.average);
   };
 
   render() {

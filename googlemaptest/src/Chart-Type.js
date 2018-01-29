@@ -6,7 +6,7 @@ class ChartType extends React.Component {
     data: [],
     loading: true,
     searchType: 'county',
-    search: 'LONDON'
+    search: 'HERTFORDSHIRE'
   }
 
   componentDidMount(event) {
@@ -29,7 +29,7 @@ class ChartType extends React.Component {
       .then(resbuffer => resbuffer.json())
       .then(res => {
         if (res.length) {
-          return res[0].average
+          return res.average
         } else {
           return 0
         }
