@@ -44,7 +44,7 @@ class App extends Component {
         <h1 className="app-title">homeTown</h1>
         <h4 className="app-subtitle">find average sold prices, crime data, broadband speed and more in your area</h4>
       </header>
-      <ChartType />
+      <ChartType userInput={this.searched} searchType = {this.searchtype} />
       <div className='wrapper'>
         <div className='inputrow'>
           <form onSubmit={this.handleSubmit}><input ref={(input) => this.input = input} required title="3 characters minimum" className='postcodeInput' placeholder='enter postcode or town' type="text"></input>

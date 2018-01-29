@@ -79,6 +79,16 @@ class Map extends React.Component {
     })
   }
 
+//   removeHeatMap = (event) => {
+   
+//     let heatmap = new google.maps.visualization.HeatmapLayer
+//     console.log('called')
+//     console.log(heatmap)
+//     if (heatmap) {
+//      heatmap.setMap(null);
+//   }
+// }
+
 
 loadBikeMap = (event) => { 
     let bikemap = new google.maps.BicyclingLayer();
@@ -109,7 +119,7 @@ loadDensityMap = (event) => {
       <i title='cycle routes' className="fa fa-bicycle hvr-grow" onClick={this.loadBikeMap}></i>
       <i title='public transport' className="fa fa-subway hvr-grow" onClick={this.loadPublicTransportMap}></i>
       <i title='traffic density' className="fa fa-car hvr-grow" onClick={this.loadDensityMap}></i>
-      <i title='natural disaster risk' className="fa fa-bolt hvr-grow "></i>
+      <i title='natural disaster risk' className="fa fa-bolt hvr-grow" onClick={this.removeHeatMap}></i>
       </div>
       <div className='actualMap' ref="map" style={mapStyle}></div>
       <div>
