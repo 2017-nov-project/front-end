@@ -2,7 +2,7 @@
 const google = window.google;
 
 export const fetchAllCoordinates = () => {
-return fetch (`http://localhost:4000/api/coordinates/postcodes`)
+return fetch (`https://peaceful-waters-20110.herokuapp.com/api/coordinates/postcodes`)
 .then(res => res.json())
 .then(res => {
   return res.coordinatesArr.map(location => {
@@ -18,13 +18,12 @@ return fetch (`http://localhost:4000/api/coordinates/postcodes`)
     if(!props) return;
     if (props.searchType === 'POSTCODE') {
     let userPostcode = props.userInput
-    return fetch (`http://localhost:4000/api/postcode/${userPostcode}/coordinates`)
+    return fetch (`https://peaceful-waters-20110.herokuapp.com/api/postcode/${userPostcode}/coordinates`)
     .then(res => res.json())
   } else {
     let userTown = props.userInput
-    return fetch(`http://localhost:4000/api/town/${userTown}/coordinates`)
+    return fetch(`https://peaceful-waters-20110.herokuapp.com/api/town/${userTown}/coordinates`)
     .then(res => res.json())
-    .catch(res => console.log('err'))
     }
   }
 

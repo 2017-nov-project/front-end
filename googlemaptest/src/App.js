@@ -24,7 +24,7 @@ class App extends Component {
     getAveragePriceByInput(this.searched, this.searchtype)
     .then(res =>
     this.setState({
-      averagePrice: res[0].average,
+      averagePrice: res.average,
       errorMsg: ''}))
     .catch(err =>
     this.setState({errorMsg: 'information not found'}))
@@ -34,10 +34,6 @@ class App extends Component {
     this.setState({
       showChart: !this.state.showChart
     })
-  }
-
-  handleDropDown = event => {
-
   }
   
   render() {
