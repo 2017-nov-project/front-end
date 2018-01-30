@@ -1,9 +1,7 @@
 import React, { Component } from 'react';
 import Map from './Map.js'
 import './App.css';
-import ChartPropertyType from './Chart-PropertyType.js'
-import ChartNewOld from './Chart-NewOld.js'
-import ChartType from './Chart-Type.js'
+import PropertyTypeChart from './PropertyTypeChart.js'
 import {getAveragePriceByInput} from './api'
 
 
@@ -44,7 +42,7 @@ class App extends Component {
         <h1 className="app-title">homeTown</h1>
         <h4 className="app-subtitle">find average sold prices, crime data, broadband speed and more in your area</h4>
       </header>
-      {/* <ChartType userInput={this.searched} searchType = {this.searchtype} /> */}
+      {/* <PropertyTypeChart userInput={this.searched} searchType = {this.searchtype} /> */}
       <div className='wrapper'>
         <div className='inputrow'>
           <form onSubmit={this.handleSubmit}><input ref={(input) => this.input = input} required title="3 characters minimum" className='postcodeInput' placeholder='enter postcode or town' type="text"></input>
@@ -96,7 +94,7 @@ class App extends Component {
       {/* desktop sidebar - vertical */}
     <div className = 'mapSideWrapper'>
       <div className='mapAndSidebar'>
-      {this.state.showChart ? <ChartPropertyType /> : <Map userInput={this.searched} searchType = {this.searchtype}/> }
+      {this.state.showChart ? <PropertyTypeChart /> : <Map userInput={this.searched} searchType = {this.searchtype}/> }
         <div className='sidebarDefault'>
           <h4 className='avSoldPriceTitle'>average sold price</h4>
           <h5 className='avSoldPriceAmount'>£{this.state.averagePrice}</h5>
