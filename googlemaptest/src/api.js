@@ -1,5 +1,6 @@
 
 const google = window.google;
+const baseUrl = 'https://peaceful-waters-20110.herokuapp.com/api'
 
 export const fetchAllCoordinates = () => {
 return fetch (`https://peaceful-waters-20110.herokuapp.com/api/coordinates/postcodes`)
@@ -27,19 +28,13 @@ return fetch (`https://peaceful-waters-20110.herokuapp.com/api/coordinates/postc
     }
   }
 
-  export const getAveragePriceByInput = (userInput, searchType) => {
-    if (searchType === 'POSTCODE') {
-    return fetch(`https://peaceful-waters-20110.herokuapp.com/api/postcode/${userInput}/average_price`)
+  export const getAveragePriceByInput = (userInput, searchType) => {    
+
+    searchType = searchType.toLowerCase()
+    userInput = userInput.toUpperCase()
+
+    return fetch(`${baseUrl}/${searchType}/${userInput}/average_price`)
     .then(res => res.json())
-    } else if (searchType === 'TOWN') {
-      return fetch(`https://peaceful-waters-20110.herokuapp.com/api/town/${userInput}/average_price`)
-      .then(res => res.json())
-    } else if (searchType === 'COUNTY') {
-      return fetch(`https://peaceful-waters-20110.herokuapp.com/api/county/${userInput}/average_price`)
-      .then(res => res.json())
-    } else if (searchType === 'LOCALITY') {
-      return fetch(`https://peaceful-waters-20110.herokuapp.com/api/locality/${userInput}/average_price`)
-      .then(res => res.json())
-    }
+    .catch(console.log)
   }
   
