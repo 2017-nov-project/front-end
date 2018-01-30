@@ -1,6 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import {fetchAllCoordinates, fetchCoordinatesByInput} from './api';
+import boundariesData from './data/boundaries.js'
+
 
 const google = window.google;
 
@@ -22,8 +24,8 @@ class Map extends React.Component {
     this.map = new google.maps.Map(this.refs.map, {
       center: this.state.center,
       zoom: this.state.zoom
-    });
-    this.map.addListener('zoom_changed', () => {
+    })
+      this.map.addListener('zoom_changed', () => {
       this.handleZoom()
     });
     this.map.addListener('center_changed', () => {
@@ -132,6 +134,15 @@ loadDensityMap = (event) => {
   }
 }
 
+loadBoundaryMap = (event) => {
+    this.map.data.addGeoJson(boundariesData);
+    this.map.data.setStyle({
+      strokeColor: "darkslategray",
+      fillColor: 'lightslategray',
+      fillOpacity: 0.1,
+      strokeWeight: 1
+    })
+  }
 
   render() {
      
@@ -142,7 +153,7 @@ loadDensityMap = (event) => {
       <i title='cycle routes' className="fa fa-bicycle hvr-grow" onClick={this.loadBikeMap}></i>
       <i title='public transport' className="fa fa-subway hvr-grow" onClick={this.loadPublicTransportMap}></i>
       <i title='traffic density' className="fa fa-car hvr-grow" onClick={this.loadDensityMap}></i>
-      <i title='natural disaster risk' className="fa fa-bolt hvr-grow" onClick={this.removeHeatMap}></i>
+      <i title='county boundaries' className="fa fa-pencil-square-o hvr-grow" onClick={this.loadBoundaryMap}></i>
       </div>
       <div className='actualMap' ref="map"></div>
       <div>
