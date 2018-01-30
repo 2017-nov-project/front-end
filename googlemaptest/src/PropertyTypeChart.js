@@ -1,39 +1,34 @@
 import React, { Component } from 'react';
-import { Bar, Line, Pie, Polar } from 'react-chartjs-2';
+import { Polar } from 'react-chartjs-2';
 
-class ChartType extends Component {
+class PropertyTypeChart extends Component {
   state = {
     data: [],
     loading: true,
-    searchType: 'county',
-    search: 'HERTFORDSHIRE'
-  }
+    searchType: 'town',
+    search: 'LONDON'
+  };
 
   componentDidMount(event) {
-    const propertyTypes =  ['D', 'S', 'T', 'F' ];
+    const propertyTypes = ['D', 'S', 'T', 'F', 'O'];
 
-    return Promise.all(propertyTypes.map( type => {
-
-
-      return this.fetchAverage(this.state.searchType, this.state.search, type)
-      
-    })).then(data => this.setState({ data, loading: false }))
-  }
-
+    return Promise.all(propertyTypes.map(type => {
+      return this.fetchAverage(this.state.searchType, this.state.search, type);
+    })).then(data => this.setState({ data, loading: false }));
+  };
 
   fetchAverage(searchType, search, propertyType) {
-    const domain = 'https://peaceful-waters-20110.herokuapp.com/api'
-    const path = `${searchType}/${search}/average_price?property_type=${propertyType}`
+    const domain = 'https://peaceful-waters-20110.herokuapp.com/api';
+    const path = (searchType && search) ? `${searchType}/${search}/average_price?property_type=${propertyType}` : `/average_price?property_type=${propertyType}`;
     return fetch(`${domain}/${path}`)
       .then(buffer => buffer.json())
-      .then(res => res.average ? res.average : 0)
+      .then(res => res.average);
   };
 
   render() {
-    const searchtype = this.state.searchType
-    const search = this.state.search
+    const { searchType, search } = this.state;
     const chartData = {
-      labels: ['Detached', 'Semi-detached', 'Terraced', 'Flat'],
+      labels: ['Detached', 'Semi-detached', 'Terraced', 'Flat', 'Others'],
       datasets: [
         {
           data: this.state.data,
@@ -42,7 +37,7 @@ class ChartType extends Component {
             'rgba(0, 255, 0, .65)',
             'rgba(0, 0, 255, .65)',
             'rgba(220, 220, 0, .65)',
-            'rgba(255, 10, 50, 0.8)'
+            'rgba(124, 10, 50, 0.8)'
           ],
           label: 'ChartType'
         }
@@ -54,17 +49,17 @@ class ChartType extends Component {
           ? <div></div>
           : <Polar
             data={chartData}
-            width={500}
+            width={600}
             height={600}
             options={{
               maintainAspectRatio: false,
               title: {
                 display: true,
-                text: `${searchtype} : ${search}`,
+                text: (searchType && search) ? `${searchType} : ${search}` : 'All UK',
                 fontFamily: 'Quicksand',
                 fontSize: 20,
-                padding:10
-                 },
+                padding: 10
+              },
             }}
           />
         }
@@ -73,4 +68,4 @@ class ChartType extends Component {
   }
 };
 
-export default ChartType;
+export default PropertyTypeChart;
