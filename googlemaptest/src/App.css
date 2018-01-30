@@ -101,6 +101,12 @@ select {
 
 /* ---- Map/Sidebar Area ---- */
 
+.actualMap {
+    width: 70vw;
+    height: 70vh;
+    border: 1px solid gray;
+  }
+
 .mapSideWrapper, .buttonDeskWrapper {
   display: flex;
   justify-content: center;
@@ -208,20 +214,37 @@ select {
 /* ---- Media Queries - Sidebars ---- */
 
 @media only screen and (max-width: 1040px) {
+    .wrapper {
+        width: 97%;
+       }
+
     .sidebarDefault, .buttonRowAppDesktop {
         display: none;
     }
+    .buttonRowMobWrapper {
+        display: flex;
+        justify-content: center;
+        flex-flow: row wrap;
+    }
     .buttonRowAppMobile {
+      width: 95%;
       display: flex;
-      justify-content: flex-end;
-      flex-flow: row wrap;
+      justify-content: flex-start;
+      flex-flow: row;
     }
    
     .sidebarHoriz {
         display: flex;
         justify-content: flex-start;
         flex-flow: row wrap;
+        margin: 0.5em;
     }
+
+    .actualMap {
+        width: 88vw;
+        height: 60vh;
+        border: 1px solid gray;
+      }
 }
 
 @media only screen and (max-width: 655px) {
@@ -232,7 +255,7 @@ select {
         display: flex;
         justify-content: flex-start;
         flex-flow: row wrap;
-        width: 100%;
+        width: 95%;
         margin-bottom: 0.5em;
     }
 
@@ -248,7 +271,8 @@ select {
         cursor: pointer;
     }
     .sidebarHoriz {
-        font-size: 1em;
+        font-size: 1.1em;
+        margin: 0.2em;
     }
     .avSoldPriceAmount,
     .plusAmount {
@@ -259,17 +283,16 @@ select {
         display: flex;
         justify-content: center;
         flex-flow: column;
+        margin-bottom: 0.2em;
     }
-    select {
-        width: 30%;
-        height: 4em;
-    }
+
     form {
         width: 100%;
         display: flex;
         justify-content: center;
-        font-size: 1.9em;
+        font-size: 1.7em;
     }
+
     .postcodeInput {
         color: rgb(32, 59, 59);
         height: 1.5em;
@@ -278,9 +301,9 @@ select {
 }
 
 @media only screen and (max-width: 480px) {
-    select {
-        width: 45%;
-        height: 4em;
+    .postcodeInput {
+    font-size: 0.65em;
+    height: 2.5em;
     }
     .sidebarHoriz {
         font-size: 0.9em;
