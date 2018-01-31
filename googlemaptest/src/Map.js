@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {fetchAllCoordinates, fetchCoordinatesByInput} from './api';
+import { fetchAllCoordinates, fetchCoordinatesByInput } from './api';
 import boundariesData from './data/boundaries.js'
 
 

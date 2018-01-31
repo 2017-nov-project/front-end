@@ -17,12 +17,6 @@ class ChartType extends React.Component {
     })).then(averagePriceByCounty => this.setState({ data: averagePriceByCounty, loading: false }))
   }
 
-  componentWillReceiveProps = (props) => {
-    console.log(props)
-    // receives searchType and userInput (postcode, town...) from App.js
-    //will need property types?
-  }
-
   fetchAverageByType(searchType, search, propertyType) {
     return fetch(`https://peaceful-waters-20110.herokuapp.com/api/${searchType}/${search}/average_price?property_type=${propertyType}`)
       .then(resbuffer => resbuffer.json())
