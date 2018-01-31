@@ -28,8 +28,8 @@ class App extends Component {
       searchForAvgPriceOnUserInput(this.state.userInput),
       fetchCoordinatesByInput(this.state.userInput)
     ])
-      .then(([{average}, {longitude, latitude}]) => {
-        const center = {lat: latitude, lng: longitude}
+      .then( ([{ average }, { coordinates }]) => {
+        const center = {lat: coordinates.latitude, lng: coordinates.longitude}
         this.setState({averagePrice: average, center })
       })
   }

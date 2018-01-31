@@ -21,12 +21,6 @@ class Map extends React.Component {
       center: this.props.coords,
       zoom: this.state.zoom
     })
-      this.map.addListener('zoom_changed', () => {
-      this.handleZoom()
-    });
-    this.map.addListener('center_changed', () => {
-       this.handleCenter()
-    });
   }
 
   componentWillUnmount() {
@@ -36,22 +30,12 @@ class Map extends React.Component {
   componentWillReceiveProps(newProps) {
     if(this.props.coords.lat !== newProps.coords.lat && this.props.coords.lng !== newProps.coords.lng) {
     const {coords} = newProps
-    this.setState({ zoom: 12 })
     this.map = new google.maps.Map(this.refs.map, {
       center: coords,
-      zoom: this.state.zoom
+      zoom: 12
     })
-    this.map.addListener('zoom_changed', () => {
-      this.handleZoom()
-    });
+   }
   }
-  }
-  
-  handleZoom = event => {
-      this.setState({
-        zoom: this.map.getZoom(),
-      });
-    }
 
 handleReRender = event => {
   this.map = new google.maps.Map(this.refs.map, {
@@ -124,8 +108,7 @@ loadBoundaryMap = (event) => {
     })
   }
 
-  render(x) {
-     
+  render() {
     return (
       <div>
       <div className='buttonRowMap'>
@@ -137,10 +120,6 @@ loadBoundaryMap = (event) => {
       </div>
       <div className='actualMap' ref="map"></div>
       <div>
-       {/* <p>props and state provided by google maps event handlers</p>
-       <p>current long:  {this.state.center.lat}</p>
-       <p>current lat:  {this.state.center.lng}</p>
-       <p>current zoom: {this.state.zoom}</p> */}
       </div>
       </div>
     )
