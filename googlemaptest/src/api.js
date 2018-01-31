@@ -15,16 +15,15 @@ return fetch (`${baseUrl}/coordinates/postcodes`)
   })
 }
 
-export const fetchCoordinatesByInput = (props) => {
-  if(!props) return;
-  if (props.searchType === 'POSTCODE') {
-  let userPostcode = props.userInput
-  return fetch (`${baseUrl}/postcode/${userPostcode}/coordinates`)
-  .then(res => res.json())
-} else {
-  let userTown = props.userInput
-  return fetch(`${baseUrl}/town/${userTown}/coordinates`)
-  .then(res => res.json())
+export const fetchCoordinatesByInput = (userInput) => {
+  if (/\d/.test(userInput)) {
+    let userPostcode = userInput
+    return fetch (`${baseUrl}/postcode/${userPostcode}/coordinates`)
+    .then(res => res.json())
+  } else {
+    let userTown = userInput
+    return fetch(`${baseUrl}/town/${userTown}/coordinates`)
+    .then(res => res.json().coordinates)
   }
 }
 
@@ -37,7 +36,6 @@ const getAveragePrice = (userInput, searchType) => {
   }
 
 export const searchForAvgPriceOnUserInput = async (userInput) => {
-  console.log(this)
   let searchType
   if (/\d/.test(userInput)) {
     searchType = 'postcode'
@@ -49,6 +47,5 @@ export const searchForAvgPriceOnUserInput = async (userInput) => {
     }))
     searchType = types.find(([searchType, isTrue]) => isTrue ? searchType : false)[0]
   }
-  getAveragePrice(userInput, searchType)
-  .then(({ average }) => this.setState({searchType, averagePrice: average }))
+  return getAveragePrice(userInput, searchType)
 }

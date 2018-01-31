@@ -7,21 +7,31 @@ import ButtonRowAppDesktop from './ButtonRowAppDesktop.js'
 import ButtonRowAppMobile from './ButtonRowAppMobile.js'
 import './App.css';
 import ChartPropertyType from './Chart-PropertyType.js'
-import { searchForAvgPriceOnUserInput } from './api'
+import { searchForAvgPriceOnUserInput, fetchCoordinatesByInput } from './api'
 
 
 class App extends Component {
   state = {
-    averagePrice: 7,
+    averagePrice: 0,
     userInput: '',
-    searchType: '',
     showChart: false,
-    errorMsg: ''
+    errorMsg: '', 
+    center: {
+      lat:  53.486051,
+      lng: -2.239902
+    },
   }
 
   handleSubmit = e => {
     e.preventDefault();
-    this.searchForAvgPriceOnUserInput(this.state.userInput)
+    return Promise.all([
+      searchForAvgPriceOnUserInput(this.state.userInput),
+      fetchCoordinatesByInput(this.state.userInput)
+    ])
+      .then(([{average}, {longitude, latitude}]) => {
+        const center = {lat: latitude, lng: longitude}
+        this.setState({averagePrice: average, center })
+      })
   }
 
   handleUserInput = e => {
@@ -29,7 +39,7 @@ class App extends Component {
     this.setState ({userInput: e.target.value})
   }
 
-  searchForAvgPriceOnUserInput = searchForAvgPriceOnUserInput.bind(this);
+
 
   handleChartRender = () => this.setState({showChart: !this.state.showChart})
   
@@ -52,7 +62,7 @@ class App extends Component {
         <ButtonRowAppMobile props = {this.state.showChart}/>
         <div className = 'mapSideWrapper'>
           <div className='mapAndSidebar'>
-          {this.state.showChart ? <ChartPropertyType /> : <Map userInput={userInput} searchType={searchType} />}
+          {this.state.showChart ? <ChartPropertyType /> : <Map coords={this.state.center} />}
         <SidebarDefault avgSoldPrice = {this.state.averagePrice}/>
       </div>  {/* mapandsidebar */}
      </div>  {/* mapSideWrapper */}
