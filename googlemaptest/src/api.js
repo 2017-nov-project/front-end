@@ -16,6 +16,7 @@ return fetch (`${baseUrl}/coordinates/postcodes`)
 }
 
 export const fetchCoordinatesByInput = (userInput) => {
+
   if (/\d/.test(userInput)) {
     let userPostcode = userInput
     return fetch (`${baseUrl}/postcode/${userPostcode}/coordinates`)
@@ -23,7 +24,7 @@ export const fetchCoordinatesByInput = (userInput) => {
   } else {
     let userTown = userInput
     return fetch(`${baseUrl}/town/${userTown}/coordinates`)
-    .then(res => res.json().coordinates)
+    .then(res => res.json())
   }
 }
 

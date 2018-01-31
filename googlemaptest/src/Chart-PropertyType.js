@@ -1,5 +1,6 @@
 import React from 'react';
-import { Bar, Line, Pie, Polar } from 'react-chartjs-2';
+import { Polar } from 'react-chartjs-2';
+// Bar, Line, Pie, 
 
 class ChartPropertyType extends React.Component {
   state = {

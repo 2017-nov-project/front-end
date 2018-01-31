@@ -1,7 +1,15 @@
 import React from 'react';
-import ReactDOM from 'react-dom';
+
 
 class SidebarHoriz extends React.Component {
+
+  componentWillReceiveProps(newProps) {
+    if(this.props !== newProps) {
+    const avgSoldPrice = newProps
+   
+    }
+   
+  }
 
   render() {
     return (
@@ -11,7 +19,7 @@ class SidebarHoriz extends React.Component {
           <h4 className='valueChangeTitle'>value change in last...</h4>
         </div>
         <div className='horizRow2'>
-          <h5 className='avSoldPriceAmount'>£{this.props.averagePrice}</h5>
+          <h5 className='avSoldPriceAmount'>£{this.props.avgSoldPrice}</h5>
           <h5 className='plusAmount'>+ 4.8%</h5>
         </div>
         <div className='row3wrap'>
