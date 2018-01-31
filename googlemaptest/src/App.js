@@ -6,13 +6,8 @@ import Header from './Header.js'
 import ButtonRowAppDesktop from './ButtonRowAppDesktop.js'
 import ButtonRowAppMobile from './ButtonRowAppMobile.js'
 import './App.css';
-<<<<<<< HEAD
-import ChartPropertyType from './Chart-PropertyType.js'
-import { searchForAvgPriceOnUserInput, fetchCoordinatesByInput } from './api'
-=======
 import PropertyTypeChart from './PropertyTypeChart.js'
-import {getAveragePriceByInput} from './api'
->>>>>>> 6ab83c0775601603f60e0721c8586b3128776b7c
+import { searchForAvgPriceOnUserInput, fetchCoordinatesByInput } from './api'
 
 
 class App extends Component {
@@ -50,7 +45,7 @@ class App extends Component {
 
 
 
-  handleChartRender = () => this.setState({showChart: !this.state.showChart})
+
   
   render() {
     const { userInput, searchType } = this.state
@@ -70,7 +65,7 @@ class App extends Component {
         <ButtonRowAppMobile props = {this.state.showChart}/>
         <div className = 'mapSideWrapper'>
           <div className='mapAndSidebar'>
-          {this.state.showChart ? <ChartPropertyType /> : <Map  coords={this.state.center} />}
+          {this.state.showChart ? <PropertyTypeChart /> : <Map  coords={this.state.center} />}
         <SidebarDefault avgSoldPrice = {this.state.averagePrice}/>
       </div>  {/* mapandsidebar */}
      </div>  {/* mapSideWrapper */}

@@ -6,7 +6,7 @@ class PropertyTypeChart extends Component {
     data: [],
     loading: true,
     searchType: 'town',
-    search: 'LONDON'
+    search: 'london'
   };
 
   componentDidMount(event) {
@@ -33,11 +33,11 @@ class PropertyTypeChart extends Component {
         {
           data: this.state.data,
           backgroundColor: [
-            'rgba(255, 0, 0, .65)',
-            'rgba(0, 255, 0, .65)',
-            'rgba(0, 0, 255, .65)',
-            'rgba(220, 220, 0, .65)',
-            'rgba(124, 10, 50, 0.8)'
+            '#B3D9FE',
+            '#505052',
+            '#9C4E3E',
+            '#ECBE92',
+            '#DA7A4F'
           ],
           label: 'ChartType'
         }

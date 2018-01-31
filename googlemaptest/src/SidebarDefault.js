@@ -12,7 +12,7 @@ class SidebarDefault extends React.Component {
     return (
       <div className='sidebarDefault'>
         <h4 className='avSoldPriceTitle'>average sold price</h4>
-        <h5 className='avSoldPriceAmount'>£{this.props.avgSoldPrice.toFixed()}</h5>
+        <h5 className='avSoldPriceAmount'>£{this.props.avgSoldPrice.toLocaleString('en', {maximumFractionDigits: 0})}</h5>
         <h4 className='valueChangeTitle'>value change in last...</h4>
         <h5 className='plusAmount'>+ 4.8%</h5>
         <label className="switch">
@@ -33,3 +33,4 @@ class SidebarDefault extends React.Component {
 
 
 export default SidebarDefault;
+

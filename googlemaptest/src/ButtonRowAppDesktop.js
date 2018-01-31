@@ -3,8 +3,12 @@ import React from 'react';
 
 
 class ButtonRowAppDesktop extends React.Component {
+ 
 
   render() {
+    //this.props   false
+    // but does this need to be on App?
+   
     return (
       <div className = 'buttonDeskWrapper'>
         <div className='buttonRowAppDesktop'>
