@@ -3,6 +3,7 @@ const google = window.google;
 const baseUrl = 'https://peaceful-waters-20110.herokuapp.com/api'
 
 export const fetchAllCoordinates = () => {
+  console.log('called')
 return fetch (`${baseUrl}/coordinates/postcodes`)
 .then(res => res.json())
 .then(res => {
@@ -16,7 +17,6 @@ return fetch (`${baseUrl}/coordinates/postcodes`)
 }
 
 export const fetchCoordinatesByInput = (userInput) => {
-
   if (/\d/.test(userInput)) {
     let userPostcode = userInput
     return fetch (`${baseUrl}/postcode/${userPostcode}/coordinates`)

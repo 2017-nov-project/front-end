@@ -28,11 +28,15 @@ class App extends Component {
       searchForAvgPriceOnUserInput(this.state.userInput),
       fetchCoordinatesByInput(this.state.userInput)
     ])
-      .then( ([{ average }, { coordinates }]) => {
-        const center = {lat: coordinates.latitude, lng: coordinates.longitude}
-        this.setState({averagePrice: average, center })
+    .then( ([{ average }, { coordinates }]) => {
+      const center = {lat: coordinates.latitude, lng: coordinates.longitude}
+      this.setState({averagePrice: average, center })
       })
+    .catch(err =>
+      this.setState({errorMsg: 'information not found'}))
   }
+  
+  
 
   handleUserInput = e => {
     e.preventDefault();
@@ -50,7 +54,6 @@ class App extends Component {
       <div className="App">
         <Header />
         <div className='wrapper'>
-
         <div className='inputrow'>
           <form onSubmit={this.handleSubmit}>
             <input className='postcodeInput' placeholder='enter postcode or town' onChange={this.handleUserInput} type="text" value={this.state.userInput}/>
