@@ -9,10 +9,6 @@ const google = window.google;
 class Map extends React.Component {
 
   state = {
-    center: {
-      lat:  53.486051,
-      lng: -2.239902
-    },
     zoom: 16,
     isHeatmap: false,
     isBikemap: false,
@@ -22,7 +18,7 @@ class Map extends React.Component {
 
   componentDidMount() {
     this.map = new google.maps.Map(this.refs.map, {
-      center: this.state.center,
+      center: this.props.coords,
       zoom: this.state.zoom
     })
       this.map.addListener('zoom_changed', () => {
@@ -37,27 +33,19 @@ class Map extends React.Component {
    google.maps.event.clearInstanceListeners(this.map)
 }
 
-  componentWillReceiveProps(userInput) {
-    fetchCoordinatesByInput(userInput)
-    .then (res => {
-    let center = {...this.state.center}
-    center.lat = res.coordinates.latitude
-    center.lng = res.coordinates.longitude
-    this.setState({center, zoom: 12})
-    })
-    .then (res => {
+  componentWillReceiveProps(newProps) {
+    if(this.props.coords.lat !== newProps.coords.lat && this.props.coords.lng !== newProps.coords.lng) {
+    const {coords} = newProps
+    this.setState({ zoom: 12 })
     this.map = new google.maps.Map(this.refs.map, {
-      center: this.state.center,
+      center: coords,
       zoom: this.state.zoom
     })
     this.map.addListener('zoom_changed', () => {
       this.handleZoom()
     });
-    this.map.addListener('center_changed', () => {
-       this.handleCenter()
-    });
-  })
-}
+  }
+  }
   
   handleZoom = event => {
       this.setState({
@@ -65,17 +53,9 @@ class Map extends React.Component {
       });
     }
 
-  handleCenter = event => {
-    let newMap = this.map.getCenter()
-    let center = {...this.state.center}
-    center.lat = newMap.lat()
-    center.lng = newMap.lng()
-    this.setState({center})
-}
-
 handleReRender = event => {
   this.map = new google.maps.Map(this.refs.map, {
-    center: this.state.center,
+    center: this.props.coords,
     zoom: this.state.zoom
   }) 
 }
@@ -144,7 +124,7 @@ loadBoundaryMap = (event) => {
     })
   }
 
-  render() {
+  render(x) {
      
     return (
       <div>
@@ -157,20 +137,17 @@ loadBoundaryMap = (event) => {
       </div>
       <div className='actualMap' ref="map"></div>
       <div>
-       <p>props and state provided by google maps event handlers</p>
+       {/* <p>props and state provided by google maps event handlers</p>
        <p>current long:  {this.state.center.lat}</p>
        <p>current lat:  {this.state.center.lng}</p>
-       <p>current zoom: {this.state.zoom}</p>
+       <p>current zoom: {this.state.zoom}</p> */}
       </div>
       </div>
     )
   }
 }
 
-ReactDOM.render(
-  <Map />,
-  document.getElementById('root')
-);
+
 
 
 export default Map;

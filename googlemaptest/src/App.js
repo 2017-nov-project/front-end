@@ -62,7 +62,7 @@ class App extends Component {
         <ButtonRowAppMobile props = {this.state.showChart}/>
         <div className = 'mapSideWrapper'>
           <div className='mapAndSidebar'>
-          {this.state.showChart ? <ChartPropertyType /> : <Map coords={this.state.center} />}
+          {this.state.showChart ? <ChartPropertyType /> : <Map  coords={this.state.center} />}
         <SidebarDefault avgSoldPrice = {this.state.averagePrice}/>
       </div>  {/* mapandsidebar */}
      </div>  {/* mapSideWrapper */}
