@@ -79,28 +79,24 @@ class App extends Component {
     return (
       <div className="App">
         <Header />
-        <div className='wrapper'>
-        
-        <div className='inputrow'>
-          <form onSubmit={this.handleSubmit}>
-            <input className='postcodeInput' placeholder='enter postcode or town' onChange={this.handleUserInput} type="text" value={this.state.userInput}/>
-            <p className='errHandle'>{this.state.errorMsg}</p>
-          </form>
-        </div>
-        <ButtonRowAppDesktop handleShowCrimeChart = {this.handleShowCrimeChart} handleShowBBChart = {this.handleShowBBChart} handleShowTypeChart = {this.handleShowTypeChart}/>
-        <SidebarHoriz avgSoldPrice = {this.state.averagePrice} userInput = {this.state.userInput}/>
-        <ButtonRowAppMobile props = {this.state.showCrimeChart}/>
-        <div className = 'mapSideWrapper'>
-          <div className='mapAndSidebar'>
-          {this.state.showCrimeChart ? <ChartCrime/> : this.state.showBBChart? <ChartBroadband /> : this.state.showTypeChart ? <PropertyTypeChart/> : <Map coords={this.state.center} />}
-
-
-
-        <SidebarDefault avgSoldPrice = {this.state.averagePrice} userInput = {this.state.userInput}/>
-      </div>  {/* mapandsidebar */}
-     </div>  {/* mapSideWrapper */}
-    </div> {/* wrapper */}
-  </div> 
+          <div className='wrapper'>
+            <div className='inputrow'>
+              <form onSubmit={this.handleSubmit}>
+                <input className='postcodeInput' placeholder='enter postcode or town' onChange={this.handleUserInput} type="text" value={this.state.userInput}/>
+                <p className='errHandle'>{this.state.errorMsg}</p>
+              </form>
+            </div>
+            <ButtonRowAppDesktop handleShowCrimeChart = {this.handleShowCrimeChart} handleShowBBChart = {this.handleShowBBChart} handleShowTypeChart = {this.handleShowTypeChart}/>
+            <SidebarHoriz avgSoldPrice = {this.state.averagePrice} userInput = {this.state.userInput}/>
+            <ButtonRowAppMobile handleShowCrimeChart = {this.handleShowCrimeChart} handleShowBBChart = {this.handleShowBBChart} handleShowTypeChart = {this.handleShowTypeChart}/>
+              <div className = 'mapSideWrapper'>
+                <div className='mapAndSidebar'>
+                  {this.state.showCrimeChart ? <ChartCrime/> : this.state.showBBChart? <ChartBroadband /> : this.state.showTypeChart ? <PropertyTypeChart/> : <Map coords={this.state.center} />}
+                  <SidebarDefault avgSoldPrice = {this.state.averagePrice} userInput = {this.state.userInput}/>
+                </div>  {/* mapandsidebar */}
+                </div>  {/* mapSideWrapper */}
+         </div> {/* wrapper */}
+      </div> 
   )}
 }
 

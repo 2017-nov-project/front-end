@@ -52,9 +52,10 @@ class PropertyTypeChart extends Component {
             width={600}
             height={600}
             options={{
-              maintainAspectRatio: false,
+              maintainAspectRatio: true,
               title: {
                 display: true,
+                responsive: true,
                 text: (searchType && search) ? `${searchType} : ${search}` : 'All UK',
                 fontFamily: 'Quicksand',
                 fontSize: 20,

@@ -72,9 +72,10 @@ const ChartBroadband = () => {
           width={500}
           height={600}
           options={{
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
             title: {
               display: true,
+              responsive: true,
               text: `Broadband Data`,
               fontFamily: 'Quicksand',
               fontSize: 20,
@@ -82,7 +83,6 @@ const ChartBroadband = () => {
                },
           }}
         />
-      }
     </div>
   )
   }

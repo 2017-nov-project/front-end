@@ -41,9 +41,10 @@ const ChartCrime = () => {
           height={600}
           options={{
             
-            maintainAspectRatio: false,
+            maintainAspectRatio: true,
             title: {
               display: true,
+              responsive: true,
               text: `Crime Data`,
               fontFamily: 'Quicksand',
               fontSize: 20,
@@ -51,10 +52,10 @@ const ChartCrime = () => {
                },
           }}
         />
-      }
+      
     </div>
   )
-  }
+}
 
   
 
