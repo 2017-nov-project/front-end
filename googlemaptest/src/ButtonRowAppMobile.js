@@ -19,6 +19,8 @@ class ButtonRowAppMobile extends React.Component {
 
 // how to handle state/props here - this used to be on App, same page as the function handleChartRender, which just flipped the state flag boolean.
 
+// will this need binding so it can update this.state to true?
+
 
 
 

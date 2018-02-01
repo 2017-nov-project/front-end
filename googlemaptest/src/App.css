@@ -102,8 +102,8 @@ select {
 /* ---- Map/Sidebar Area ---- */
 
 .actualMap {
-    width: 70vw;
-    height: 70vh;
+    width: 71vw;
+    height: 75vh;
     border: 1px solid gray;
   }
 
@@ -150,66 +150,46 @@ select {
     background-color: rgb(239, 238, 240);
     border: 1px solid rgb(239, 238, 240);
     border-radius: 25px;
-    height: 10em;
+    height: 7em;
     width: 100%;
-    padding: 0.5em;
     display: none;
+ 
 }
 
 .horizRow1,
-.horizRow2,
-.horizRow3 {
+.horizRow2 {
     display: flex;
     justify-content: space-evenly;
     width: 100%;
 }
 
-.horizRow3 {
-    display: flex;
-    justify-content: flex-start space-evenly;
-    flex-flow: row wrap;
-    font-weight: 400;
-    width: 30%;
-}
-
-.row3wrap {
-    width: 100%;
-    display: flex;
-    justify-content: center;
-    flex-flow: row wrap;
-}
-
 /* ---- Sidebar - Vertical/Desktop ----  */
 
 .sidebarDefault {
-    border: 1px solid rgb(166, 166, 185);
-    height: 600px;
-    width: 20%;
-    margin-left: 20px;
-    margin-top: 51px;
-    padding: 0.5em 0em 0em 1.5em;
-}
-
-.amounts {
     display: flex;
-    justify-content: flex-start space-between;
-    flex-flow: row wrap;
-    width: 6em;
+    justify-content: flex-start;
+    flex-flow: column;
+    border: 1px solid rgb(166, 166, 185);
+    border-radius: 8px;
+    background-color: rgb(249, 249, 253);
+    height: 25%;
+    width: 20%;
+    margin-top: 51px;
+    padding: 1em;
 }
 
-.avSoldPriceTitle,
-.valueChangeTitle {
+.avSoldPriceTitle {
     color: darkslategray;
     font-size: 1.6em;
     font-weight: 200;
-    margin: 0.5em 0em 0.5em 0em;
+    margin: 0.3em 0em 0.3em 0em;
 }
 
-.avSoldPriceAmount,
-.plusAmount {
+.avSoldPriceAmount {
     color: darkslategray;
     font-size: 2em;
     margin: 0.5em 0em 0.5em 0em;
+    letter-spacing: 2px;
 }
 
 /* ---- Media Queries - Sidebars ---- */
@@ -275,10 +255,10 @@ select {
         font-size: 1.1em;
         margin: 0.2em;
     }
-    .avSoldPriceAmount,
-    .plusAmount {
+    .avSoldPriceAmount {
         font-size: 1.5em;
     }
+
     .inputrow {
         width: 100%;
         display: flex;
@@ -309,68 +289,9 @@ select {
     .sidebarHoriz {
         font-size: 0.9em;
     }
-    .avSoldPriceAmount,
-    .plusAmount {
+    .avSoldPriceAmount {
         font-size: 1.4em;
     }
-}
-
-
-/* ---- slider switch ---- */
-
-.switch {
-    position: relative;
-    display: inline-block;
-    width: 6em;
-    height: 34px;
-}
-
-.switch input {
-    display: none;
-}
-
-.slider {
-    position: absolute;
-    cursor: pointer;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: lightslategray;
-    transition: 0.4s;
-}
-
-.slider:before {
-    position: absolute;
-    content: "";
-    height: 26px;
-    width: 26px;
-    left: 8px;
-    bottom: 4px;
-    background-color: white;
-    transition: 0.4s;
-}
-
-input:checked+.slider {
-    background-color: darkslategray;
-}
-
-input:focus+.slider {
-    box-shadow: 0 0 1px #2196f3;
-}
-
-input:checked+.slider:before {
-    -webkit-transform: translateX(5px);
-    -ms-transform: translateX(26px);
-    transform: translateX(56px);
-}
-
-.slider.round {
-    border-radius: 34px;
-}
-
-.slider.round:before {
-    border-radius: 50%;
 }
 
 /* ---- Button Hover ----  */

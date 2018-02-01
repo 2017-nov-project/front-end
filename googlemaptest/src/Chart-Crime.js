@@ -5,15 +5,15 @@ const ChartCrime = () => {
   const chartData = {
     labels: [
                 'Anti-social behaviour',
-                'Vehicle Crime', 
-                'Criminal damage Arson', 
+                'Vehicle crime', 
+                'Criminal damage', 
                 'Shoplifting',
                 'Drugs',
                 'Public Disorder',
-                'Damage Arson',
+                'Arson',
                 'Other theft',
-                'Other Crime',
-                'Violent Crime'
+                'Other crime',
+                'Violent crime'
               ],
     datasets: [
       {
@@ -35,11 +35,12 @@ const ChartCrime = () => {
   };
   return (
     <div className="chart">
-         <Pie
+         <Polar
           data={chartData}
           width={500}
           height={600}
           options={{
+            
             maintainAspectRatio: false,
             title: {
               display: true,
@@ -54,5 +55,7 @@ const ChartCrime = () => {
     </div>
   )
   }
+
+  
 
 export default ChartCrime;

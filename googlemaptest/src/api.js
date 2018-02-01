@@ -6,7 +6,8 @@ export const fetchAllCoordinates = () => {
 return fetch (`${baseUrl}/coordinates/postcodes`)
 .then(res => res.json())
 .then(res => {
-  return res.coordinatesArr.map(location => {
+  console.log(res)
+  return res.arr.map(location => {
     if (!location) return;
       const lat = location.latitude    
       const lng = location.longitude
@@ -17,12 +18,10 @@ return fetch (`${baseUrl}/coordinates/postcodes`)
 
 export const fetchCoordinatesByInput = (userInput) => {
   if (/\d/.test(userInput)) {
-    let userPostcode = userInput
-    return fetch (`${baseUrl}/postcode/${userPostcode}/coordinates`)
+    return fetch (`${baseUrl}/postcode/${userInput}/coordinates`)
     .then(res => res.json())
   } else {
-    let userTown = userInput
-    return fetch(`${baseUrl}/town/${userTown}/coordinates`)
+    return fetch(`${baseUrl}/town/${userInput}/coordinates`)
     .then(res => res.json())
   }
 }

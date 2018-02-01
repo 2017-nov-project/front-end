@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { fetchAllCoordinates, fetchCoordinatesByInput } from './api';
-import boundariesData from './data/boundaries.js'
+// import boundariesData from './data/boundaries.js'
 
 
 const google = window.google;
@@ -98,15 +98,15 @@ loadDensityMap = (event) => {
   }
 }
 
-loadBoundaryMap = (event) => {
-    this.map.data.addGeoJson(boundariesData);
-    this.map.data.setStyle({
-      strokeColor: "darkslategray",
-      fillColor: 'lightslategray',
-      fillOpacity: 0.1,
-      strokeWeight: 1
-    })
-  }
+// loadBoundaryMap = (event) => {
+//     this.map.data.addGeoJson(boundariesData);
+//     this.map.data.setStyle({
+//       strokeColor: "darkslategray",
+//       fillColor: 'lightslategray',
+//       fillOpacity: 0.1,
+//       strokeWeight: 1
+//     })
+//   }
 
   render() {
     return (
