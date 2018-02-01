@@ -3,6 +3,7 @@ const google = window.google;
 const baseUrl = 'https://peaceful-waters-20110.herokuapp.com/api'
 
 export const fetchAllCoordinates = () => {
+  console.log('called')
 return fetch (`${baseUrl}/coordinates/postcodes`)
 .then(res => res.json())
 .then(res => {
@@ -11,7 +12,8 @@ return fetch (`${baseUrl}/coordinates/postcodes`)
     if (!location) return;
       const lat = location.latitude    
       const lng = location.longitude
-   return {location: new google.maps.LatLng(lat, lng), weight: 1};
+      const weight = location.weight
+   return {location: new google.maps.LatLng(lat, lng), weight: (weight)};
     })
   })
 }

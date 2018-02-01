@@ -232,6 +232,19 @@ select {
         height: 60vh;
         border: 1px solid gray;
       }
+      .avSoldPriceTitle {
+        color: darkslategray;
+        font-size: 1.3em;
+        font-weight: 200;
+        margin: 0.3em 0em 0.3em 0em;
+    }
+    
+    .avSoldPriceAmount {
+        color: darkslategray;
+        font-size: 2em;
+        margin: 0.5em 0em 0.5em 0em;
+        letter-spacing: 2px;
+    }
 }
 
 @media only screen and (max-width: 655px) {

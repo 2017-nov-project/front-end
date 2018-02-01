@@ -61,8 +61,6 @@ class App extends Component {
       const center = {lat: coordinates.latitude, lng: coordinates.longitude}
       this.setState({averagePrice: average, center })
       })
-      // no average price but coords found
-      // render coords not price?
     .catch(err =>
       this.setState({errorMsg: 'information not found'}))
   }
@@ -94,7 +92,7 @@ class App extends Component {
                   {this.state.showCrimeChart ? <ChartCrime/> : this.state.showBBChart? <ChartBroadband /> : this.state.showTypeChart ? <PropertyTypeChart/> : <Map coords={this.state.center} />}
                   <SidebarDefault avgSoldPrice = {this.state.averagePrice} userInput = {this.state.userInput}/>
                 </div>  {/* mapandsidebar */}
-                </div>  {/* mapSideWrapper */}
+              </div>  {/* mapSideWrapper */}
          </div> {/* wrapper */}
       </div> 
   )}
