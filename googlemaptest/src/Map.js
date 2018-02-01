@@ -54,7 +54,9 @@ handleReRender = event => {
       fetchAllCoordinates()
       .then(heatmapData => {
       heatmap = new google.maps.visualization.HeatmapLayer({
-        data: heatmapData
+        data: heatmapData,
+        radius: 12,
+        opacity: 1
       })
       heatmap.setMap(this.map)
       this.setState({isHeatmap: true})

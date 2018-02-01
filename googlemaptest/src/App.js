@@ -9,6 +9,7 @@ import './App.css';
 import PropertyTypeChart from './PropertyTypeChart.js'
 import ChartCrime from './Chart-Crime.js'
 import ChartBroadband from './Chart-Broadband.js'
+import ChartRadar from './Chart-Radar.js'
 import { searchForAvgPriceOnUserInput, fetchCoordinatesByInput } from './api'
 
 
@@ -18,6 +19,7 @@ class App extends Component {
     userInput: '',
     showCrimeChart: false,
     showBBChart: false,
+    showRadarChart: false,
     showTypeChart: false,
     errorMsg: '', 
     center: {
@@ -31,7 +33,8 @@ class App extends Component {
     this.setState({
       showCrimeChart: !this.state.showCrimeChart,
       showBBChart: false,
-      showTypeChart: false
+      showTypeChart: false,
+      showRadarChart: false
     })
   }
 
@@ -39,13 +42,24 @@ class App extends Component {
     this.setState({
       showBBChart: !this.state.showBBChart,
       showCrimeChart: false,
-      showTypeChart: false
+      showTypeChart: false,
+      showRadarChart: false
     })
   }
 
   handleShowTypeChart = (event) => {
     this.setState({
       showTypeChart: !this.state.showTypeChart,
+      showBBChart: false,
+      showCrimeChart: false,
+      showRadarChart: false
+    })
+  }
+
+  handleShowRadarChart = (event) => {
+    this.setState({
+      showRadarChart: !this.state.showRadarChart,
+      showTypeChart: false,
       showBBChart: false,
       showCrimeChart: false
     })
@@ -57,12 +71,13 @@ class App extends Component {
       searchForAvgPriceOnUserInput(this.state.userInput),
       fetchCoordinatesByInput(this.state.userInput)
     ])
-    .then( ([{ average }, { coordinates }]) => {
-      const center = {lat: coordinates.latitude, lng: coordinates.longitude}
-      this.setState({averagePrice: average, center })
+      .then(async ([{ average }, { coordinates }]) => {
+        average = average ? average : 0
+        const center = { lat: coordinates.latitude, lng: coordinates.longitude }
+        this.setState({ averagePrice: average, center, errorMsg: '' })
       })
-    .catch(err =>
-      this.setState({errorMsg: 'information not found'}))
+      .catch(err =>
+        this.setState({ errorMsg: 'information not found' }))
   }
   
 
@@ -84,12 +99,16 @@ class App extends Component {
                 <p className='errHandle'>{this.state.errorMsg}</p>
               </form>
             </div>
-            <ButtonRowAppDesktop handleShowCrimeChart = {this.handleShowCrimeChart} handleShowBBChart = {this.handleShowBBChart} handleShowTypeChart = {this.handleShowTypeChart}/>
+            <ButtonRowAppDesktop handleShowCrimeChart = {this.handleShowCrimeChart} handleShowBBChart = {this.handleShowBBChart} handleShowTypeChart = {this.handleShowTypeChart} handleShowRadarChart={this.handleShowRadarChart}/>
             <SidebarHoriz avgSoldPrice = {this.state.averagePrice} userInput = {this.state.userInput}/>
             <ButtonRowAppMobile handleShowCrimeChart = {this.handleShowCrimeChart} handleShowBBChart = {this.handleShowBBChart} handleShowTypeChart = {this.handleShowTypeChart}/>
               <div className = 'mapSideWrapper'>
                 <div className='mapAndSidebar'>
-                  {this.state.showCrimeChart ? <ChartCrime/> : this.state.showBBChart? <ChartBroadband /> : this.state.showTypeChart ? <PropertyTypeChart/> : <Map coords={this.state.center} />}
+                  {this.state.showCrimeChart ? <ChartCrime/> : 
+                    this.state.showBBChart ? <ChartBroadband /> : 
+                      this.state.showTypeChart ? <PropertyTypeChart /> : 
+                        this.state.showRadarChart ? <ChartRadar /> : 
+                          <Map coords={this.state.center} />}
                   <SidebarDefault avgSoldPrice = {this.state.averagePrice} userInput = {this.state.userInput}/>
                 </div>  {/* mapandsidebar */}
               </div>  {/* mapSideWrapper */}

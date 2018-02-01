@@ -10,7 +10,7 @@ class PropertyTypeChart extends Component {
   };
 
   componentDidMount(event) {
-    const propertyTypes = ['D', 'S', 'T', 'F', 'O'];
+    const propertyTypes = ['D', 'S', 'T', 'F'];
 
     return Promise.all(propertyTypes.map(type => {
       return this.fetchAverage(this.state.searchType, this.state.search, type);
@@ -28,7 +28,7 @@ class PropertyTypeChart extends Component {
   render() {
     const { searchType, search } = this.state;
     const chartData = {
-      labels: ['Detached', 'Semi-detached', 'Terraced', 'Flat', 'Others'],
+      labels: ['Detached', 'Semi-detached', 'Terraced', 'Flat'],
       datasets: [
         {
           data: this.state.data,

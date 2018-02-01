@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bar, Line, Pie, Polar, Radar } from 'react-chartjs-2';
+import { Radar } from 'react-chartjs-2';
 
 const ChartRadar = () => {
   const chartData = {
@@ -64,7 +64,7 @@ const ChartRadar = () => {
              }
           }}
         />
-      }
+      
     </div>
   )
   }
