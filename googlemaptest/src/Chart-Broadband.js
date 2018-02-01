@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bar, Line, Pie, Polar } from 'react-chartjs-2';
+import { Bar } from 'react-chartjs-2';
 
 const ChartBroadband = () => {
   const chartData = {

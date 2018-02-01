@@ -29,19 +29,25 @@ class App extends Component {
 
   handleShowCrimeChart = (event) => {
     this.setState({
-      showCrimeChart: !this.state.showCrimeChart
+      showCrimeChart: !this.state.showCrimeChart,
+      showBBChart: false,
+      showTypeChart: false
     })
   }
 
   handleShowBBChart = (event) => {
     this.setState({
-      showBBChart: !this.state.showBBChart
+      showBBChart: !this.state.showBBChart,
+      showCrimeChart: false,
+      showTypeChart: false
     })
   }
 
   handleShowTypeChart = (event) => {
     this.setState({
-      showTypeChart: !this.state.showTypeChart
+      showTypeChart: !this.state.showTypeChart,
+      showBBChart: false,
+      showCrimeChart: false
     })
   }
   
@@ -86,9 +92,10 @@ class App extends Component {
         <ButtonRowAppMobile props = {this.state.showCrimeChart}/>
         <div className = 'mapSideWrapper'>
           <div className='mapAndSidebar'>
-          {this.state.showCrimeChart ? <ChartCrime/> : <Map coords={this.state.center} />}
-          {this.state.showBBChart ? <ChartBroadband/> : <Map coords={this.state.center} />}
-          {this.state.showTypeChart ? <PropertyTypeChart/> : <Map coords={this.state.center} />}
+          {this.state.showCrimeChart ? <ChartCrime/> : this.state.showBBChart? <ChartBroadband /> : this.state.showTypeChart ? <PropertyTypeChart/> : <Map coords={this.state.center} />}
+
+
+
         <SidebarDefault avgSoldPrice = {this.state.averagePrice} userInput = {this.state.userInput}/>
       </div>  {/* mapandsidebar */}
      </div>  {/* mapSideWrapper */}

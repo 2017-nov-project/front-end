@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Polar } from 'react-chartjs-2';
+import { Pie } from 'react-chartjs-2';
 
 class PropertyTypeChart extends Component {
   state = {
@@ -47,7 +47,7 @@ class PropertyTypeChart extends Component {
       <div className="chart">
         {this.state.loading
           ? <div></div>
-          : <Polar
+          : <Pie
             data={chartData}
             width={600}
             height={600}

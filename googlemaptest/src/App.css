@@ -139,7 +139,7 @@ select {
   display: none;
 }
 
-.chart {
+.chart, .ChartBroadband {
   margin-left: 18em;
   padding: 1em;
 }
